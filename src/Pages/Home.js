@@ -32,7 +32,7 @@ const dettagliImprevisti = [
 
 const Home = () => {
   return (
-    <section className="flex h-screen w-full flex-col flex-wrap items-center justify-around overflow-hidden bg-stone-950 font-bold text-gray-800 md:flex-row md:flex-nowrap">
+    <section className="flex h-full w-full flex-col flex-wrap items-center justify-around bg-stone-950 font-bold text-gray-800 md:flex-row md:flex-nowrap">
       {dettagliImprevisti.map((el) => (
         <div
           key={el.id}

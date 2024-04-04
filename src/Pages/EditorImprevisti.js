@@ -31,7 +31,7 @@ const EditorImprevisti = () => {
 
         <div className="relative flex h-1/2 md:h-2/3 w-full overflow-y-auto flex-col items-center justify-center gap-2 p-1 text-xs md:text-base">
           <header className="w-full items-center justify-between p-1 md:flex">
-            <h3 className="w-full text-start uppercase text-[--clr-ter] md:w-1/3">
+            <h3 className="w-full text-center md:text-start uppercase text-[--clr-prim] md:w-1/3">
               Imprevisti {selectRefState}
             </h3>
             <label
