@@ -5,6 +5,10 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    fontFamily : {
+      "H2": ["Boogaloo", "sans-serif"],
+      "Descr": ['Handlee', 'cursive']
+    }
   },
   plugins: [],
 }
