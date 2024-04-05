@@ -8,13 +8,14 @@ import { CartContext } from "../context/regContext";
 import random from "random";
 
 const Prepartita = () => {
-
   const { prepartita } = useContext(CartContext);
 
   const [casuale, setCasuale] = useState(null);
 
   const fetchList = () => {
-    setCasuale(prepartita?.length > 0 ? random.choice(prepartita) : initialMessage);
+    setCasuale(
+      prepartita?.length > 0 ? random.choice(prepartita) : initialMessage,
+    );
   };
 
   const { titolo, descrizione, isImprev, ultEstrazione } = casuale
@@ -31,12 +32,11 @@ const Prepartita = () => {
           <section className="flex h-full w-full flex-col items-center justify-around">
             <h2
               style={{
-                fontFamily: "'Boogaloo', sans-serif",
                 filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
               }}
               className={
                 isImprev > 0
-                  ? "md:flex h-1/4 md:h-full items-center  text-5xl font-extrabold uppercase relative top-2 md:text-6xl"
+                  ? "relative top-2 h-1/4 items-center font-H2 text-5xl font-extrabold uppercase md:flex md:h-full md:text-6xl"
                   : "invisible md:h-full"
               }
             >
@@ -46,15 +46,14 @@ const Prepartita = () => {
               <>
                 <h3
                   style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
-                  className={`md:flex h-1/4 items-center text-4xl font-extrabold uppercase md:h-full md:text-5xl ${
+                  className={`h-1/4 items-center text-4xl font-extrabold uppercase md:flex md:h-full md:text-5xl ${
                     titolo === "IMPREVISTO SPECIALE" && "hidden"
                   }`}
                 >
                   {titolo}
                 </h3>
                 <p
-                  style={{ fontFamily: "'Handlee', cursive" }}
-                  className={`mt-4 h-2/4 px-4 text-xl md:h-full md:w-2/3 ${descrizione.length > 40 ? "md:text-2xl h-3/4" : "md:text-3xl"}`}
+                  className={`mt-4 h-2/4 px-4 font-Descr text-xl md:h-full md:w-2/3 ${descrizione.length > 40 ? "h-3/4 md:text-2xl" : "md:text-3xl"}`}
                 >
                   {isImprev > 0 && descrizione}
                 </p>
@@ -64,8 +63,7 @@ const Prepartita = () => {
                 <FetchImprevisto />
               </>
             )}
-            {(ultEstrazione === 1 && !isImprSpeciale) && <SecondaEstrazione />}
-
+            {ultEstrazione === 1 && !isImprSpeciale && <SecondaEstrazione />}
           </section>
         )}
       </LayoutBase>

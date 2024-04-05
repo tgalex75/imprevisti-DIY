@@ -7,19 +7,22 @@ import SecondaEstrazione from "../Components/SecondaEstrazione";
 export default function FetchData() {
   const { speciali } = useContext(CartContext);
 
-  const casuale = speciali?.length > 0 ? random.choice(speciali) : initialMessage
+  const casuale =
+    speciali?.length > 0 ? random.choice(speciali) : initialMessage;
 
   const { titolo, descrizione } = casuale;
 
   return (
     <>
-      <section id="FetchImprevisto" className="flex items-center h-3/4 flex-col gap-8 md:h-full">
+      <section
+        id="FetchImprevisto"
+        className="flex h-3/4 flex-col items-center gap-8 md:h-full"
+      >
         <h4 className="text-2xl font-extrabold uppercase md:text-5xl">
           {titolo}
         </h4>
         <p
-          style={{ fontFamily: "'Handlee', cursive" }}
-          className={`h-1/4 md:w-3/4 overflow-y-auto px-4 ${
+          className={`h-1/4 overflow-y-auto px-4 font-Descr md:w-3/4 ${
             descrizione && descrizione.length > 40
               ? "text-sm md:text-xl"
               : "text-xl md:text-3xl"

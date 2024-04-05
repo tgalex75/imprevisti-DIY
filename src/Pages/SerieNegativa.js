@@ -32,37 +32,35 @@ const SerieNegativa = () => {
             {/* BOX PRIMA ESTRAZIONE */}
             <h2
               style={{
-                fontFamily: "'Boogaloo', sans-serif",
                 filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
               }}
               className={
                 isImprev > 0
-                  ? "md:flex h-1/4 md:h-full items-center  text-5xl font-extrabold uppercase relative top-2 md:text-6xl"
+                  ? "relative top-2 h-1/4 items-center font-H2  text-5xl font-extrabold uppercase md:flex md:h-full md:text-6xl"
                   : "hidden md:h-full"
               }
             >
               IMPREVISTO!
             </h2>
-              <h3
+            <h3
+              style={{
+                filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
+              }}
+              className="h-1/4 items-center justify-center text-3xl font-extrabold uppercase md:flex md:flex-1 md:text-6xl"
+            >
+              {titolo}
+            </h3>
+            {isImprev > 0 && (
+              <p
                 style={{
                   filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
                 }}
-                className="h-1/4 items-center justify-center text-3xl font-extrabold uppercase md:flex md:flex-1 md:text-6xl"
+                className={`mt-4 h-2/4 px-4 font-Descr text-xl md:h-full md:w-2/3 ${descrizione.length > 40 ? "h-3/4 md:text-2xl" : "md:text-3xl"}`}
               >
-                {titolo}
-              </h3>
-              {isImprev > 0 && (
-                <p
-                  style={{
-                    fontFamily: "'Handlee', cursive",
-                    filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
-                  }}
-                  className={`mt-4 h-2/4 px-4 text-xl md:h-full md:w-2/3 ${descrizione.length > 40 ? "md:text-2xl h-3/4" : "md:text-3xl"}`}
-                >
-                  {descrizione}
-                </p>
-              )}
-              {ultEstrazione > 0 && <SecondaEstrazione />}
+                {descrizione}
+              </p>
+            )}
+            {ultEstrazione > 0 && <SecondaEstrazione />}
           </section>
         )}
       </LayoutBase>
