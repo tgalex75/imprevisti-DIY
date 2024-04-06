@@ -29,12 +29,9 @@ const Settimana = () => {
         {casuale && (
           <section className="flex h-full w-full flex-col items-center justify-around">
             <h2
-              style={{
-                filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
-              }}
               className={
                 isImprev > 0
-                  ? "relative top-2 h-1/4 items-center font-H2  text-5xl font-extrabold uppercase md:flex md:h-full md:text-6xl"
+                  ? "relative top-2 h-1/4 items-center font-H2  text-5xl font-extrabold uppercase [filter:drop-shadow(.05rem_.05rem_0.1rem_#000)] md:flex md:h-full md:text-6xl"
                   : "invisible md:h-full"
               }
             >
@@ -43,8 +40,7 @@ const Settimana = () => {
             {!isImprSpeciale ? (
               <>
                 <h3
-                  style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
-                  className={`h-1/4 items-center text-4xl font-extrabold uppercase md:flex md:h-full md:text-5xl ${
+                  className={`h-1/4 items-center text-4xl font-extrabold uppercase [filter:drop-shadow(.05rem_.05rem_0.1rem_#000)]  md:flex md:h-full md:text-5xl ${
                     titolo === "IMPREVISTO SPECIALE" && "hidden"
                   }`}
                 >

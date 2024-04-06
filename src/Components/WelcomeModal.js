@@ -26,13 +26,13 @@ const WelcomeModal = () => {
         >
           <MdInfoOutline size={56} />
           <h2 className="bold font-H2 text-6xl">Benvenuta/o!</h2>
-          <p className="w-1/2 text-center font-Descr text-2xl">
+          <p className="w-3/4 md:w-1/2 text-center font-Descr text-2xl">
             Apri il menu in alto a destra e clicca su{" "}
             <span className="font-bold">ISTRUZIONI</span> per iniziare a
             padroneggiare la Web App!
           </p>
           <button
-            className="w-1/3 rounded-lg bg-[--clr-prim] px-4 py-2 text-xl font-semibold"
+            className="w-3/4 md:w-1/3 rounded-lg bg-[--clr-prim] px-4 py-2 text-xl font-semibold"
             onClick={chiudiModale}
           >
             Ok... ho capito!
