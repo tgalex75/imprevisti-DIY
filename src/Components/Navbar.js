@@ -85,7 +85,7 @@ const Navbar = () => {
         <ul
           style={isOpenMenu ? { right: 0 } : { right: "-100%" }}
           onClick={handleClick}
-          className="absolute top-0 z-[-1] flex h-screen w-full md:w-[30vw] flex-col items-center py-6 justify-around bg-black/95 text-center text-gray-300 transition-[0.5s]"
+          className="absolute top-0 z-[-1] flex h-screen w-full md:w-[30vw] flex-col items-center md:py-6 py-4 justify-start gap-10 md:justify-around bg-black/95 text-center text-gray-300 transition-[0.5s]"
         >
           {linksMenu}
         </ul>
