@@ -19,7 +19,7 @@ const EditorImprevisti = () => {
   }, []);
 
   return (
-    <section className="flex h-full w-full flex-col items-center justify-between p-2 font-bold overflow-hidden md:px-4 md:pb-2">
+    <section className="flex h-full w-full flex-col items-center justify-between p-2 font-bold overflow-y-auto md:overflow-hidden md:px-4 md:pb-2">
       <h1>Editor Imprevisti</h1>
       <motion.div
         initial={{ opacity: 0 }}
@@ -29,7 +29,7 @@ const EditorImprevisti = () => {
       >
         {/* Lista Imprevisti Attuale */}
 
-        <div className="relative flex h-1/2 md:h-2/3 w-full overflow-y-auto flex-col items-center justify-center gap-2 p-1 text-xs md:text-base">
+        <div className="relative flex h-1/2 md:h-2/3 w-full overflow-y-auto flex-col items-center justify-center md:gap-2 p-1 text-xs md:text-base">
           <header className="w-full items-center justify-between p-1 md:flex">
             <h3 className="w-full text-center md:text-start uppercase text-[--clr-prim] md:w-1/3">
               Imprevisti {selectRefState}
@@ -82,7 +82,7 @@ const EditorImprevisti = () => {
               {registro?.map((el) => (
                 <li
                   key={el.id}
-                  className="text-[.6rem] leading-none flex min-h-12 gap-2 odd:bg-gray-700/20 bg-gray-400/20 ps-2 font-normal hover:bg-[--clr-prim] hover:text-black"
+                  className="text-[.6rem] leading-none flex h-12 gap-2 odd:bg-gray-700/20 bg-gray-400/20 ps-2 font-normal hover:bg-[--clr-prim] hover:text-black"
                 >
                   <div className="flex w-full flex-col p-1">
                     <span className="block h-full w-full bg-transparent font-semibold uppercase">
@@ -96,7 +96,7 @@ const EditorImprevisti = () => {
                     <span className="block h-full w-full bg-transparent text-start font-semibold uppercase" style={selectRefState === "settimana" ? {visibility: "hidden"} : {}}>
                       {el.ultEstrazione === 1 ? "SI" : "NO"}
                     </span>
-                    <span className="block h-full w-full bg-transparent text-start font-semibold uppercase">
+                    <span className="block h-full w-full bg-transparent text-start font-semibold uppercase overflow-y-auto">
                       {el.descrizione}
                     </span>
                   </div>

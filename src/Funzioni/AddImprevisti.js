@@ -1,6 +1,7 @@
 import { db } from "../Data/db";
 import { useForm } from "react-hook-form";
 import { useState, useRef } from "react";
+import {isMobile} from "react-device-detect"
 
 export function AddImprevisti(props) {
   const { tipoImprevisto } = props;
@@ -40,7 +41,7 @@ export function AddImprevisti(props) {
   return (
     <form
       onSubmit={handleSubmitImprevisti(addImpr)}
-      className="flex h-full w-full flex-col items-center justify-between gap-2 md:px-4 py-2 font-normal"
+      className="flex h-full w-full flex-col items-center border border-dashed justify-between gap-2 md:px-4 py-2 font-normal"
     >
       <h3 className="text-center uppercase text-[--clr-prim]">
         Aggiungi il tuo imprevisto
@@ -166,7 +167,7 @@ export function AddImprevisti(props) {
             {...registerImprevisti("descrizione", {
               required: disabledField || refState === "speciale" ? false : true,
             })}
-            rows={4}
+            rows={isMobile ? 3 : 4}
             disabled={disabledField || refState === "speciale"}
             id="descrizione"
             placeholder="Descrizione dell'imprevisto"
