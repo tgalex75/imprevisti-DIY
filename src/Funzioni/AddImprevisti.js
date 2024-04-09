@@ -68,7 +68,7 @@ export function AddImprevisti(props) {
           defaultChecked
           ref={ref}
           onChange={handleRefState}
-          className="w-fit self-center rounded-md border p-1 text-xs md:text-sm font-semibold dark:border-gray-300/80 dark:bg-black/30 dark:text-gray-300 dark:placeholder-black/10 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+          className="w-fit self-center rounded-md border p-1 text-xs font-semibold md:text-sm dark:border-gray-300/80 dark:bg-black/30 dark:text-gray-300 dark:placeholder-black/10 dark:focus:border-blue-500 dark:focus:ring-blue-500"
         >
           <option value="imprevisto">IMPREVISTO</option>
           <option
@@ -89,7 +89,7 @@ export function AddImprevisti(props) {
       {/* TITOLO */}
       <section className="w-full rounded-md border p-1 md:flex md:p-2">
         <div className="w-full gap-2 md:flex md:w-1/2 md:flex-col">
-          <label className="my-1 flex flex-col gap-4 text-xs md:text-sm font-semibold">
+          <label className="my-1 flex flex-col gap-4 text-xs font-semibold md:text-sm">
             Titolo Imprevisto
             {errorsImprevisti.titolo && (
               <span className="w-full self-start text-[--clr-prim]">
@@ -118,7 +118,7 @@ export function AddImprevisti(props) {
                 maxLength: 20,
               })}
               disabled
-              className="block w-2/3 self-start rounded p-1 text-xs md:text-sm font-semibold uppercase text-black placeholder:normal-case placeholder:italic disabled:placeholder:text-black md:w-1/3"
+              className="block w-2/3 self-start rounded p-1 text-xs font-semibold uppercase text-black placeholder:normal-case placeholder:italic disabled:placeholder:text-black md:w-1/3 md:text-sm"
               placeholder="IMPREVISTO SPECIALE"
             />
           )}
@@ -126,14 +126,14 @@ export function AddImprevisti(props) {
           {/* ESTRAZIONE EXTRA? */}
 
           <div
-            className="flex items-center gap-2 border border-pink-500 py-2 pe-2"
+            className="flex items-center gap-2 py-2 pe-2"
             style={
               tipoImprevisto === "settimana" ? { visibility: "hidden" } : {}
             }
           >
             <label
               htmlFor="ultEstrazione"
-              className="text-xs md:text-sm font-semibold text-gray-300 md:me-4"
+              className="text-xs font-semibold text-gray-300 md:me-4 md:text-sm"
             >
               Ulteriore estrazione necessaria dopo la prima?
             </label>
@@ -159,12 +159,49 @@ export function AddImprevisti(props) {
               className="ms-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 md:m-0 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
             />
           </div>
-          
         </div>
 
         {/* DESCRIZIONE */}
         <div className="flex flex-col gap-2 md:w-1/2 ">
-          <label className="my-1 flex w-full items-center gap-4 self-start text-xs md:text-sm font-semibold">
+
+          {/* ELIMINA DOPO IMPREVISTO ? */}
+
+          {tipoImprevisto === "speciali" && (
+            <div
+              className="flex items-center gap-2 pe-2"
+              style={
+                tipoImprevisto === "settimana" ? { visibility: "hidden" } : {}
+              }
+            >
+              <label
+                htmlFor="eliminaDopoEstrazione"
+                className="text-xs font-semibold text-gray-300 md:me-4 md:text-sm"
+              >
+                Vuoi che venga eliminato dopo l'estrazione?
+              </label>
+              <label htmlFor="eliminaYES">Sì</label>
+              <input
+                {...registerImprevisti("ultEstrazione", {required: true})}
+                disabled={disabledField || refState === "speciale"}
+                id="eliminaYES"
+                name="eliminaDopoEstrazione"
+                defaultChecked
+                type="radio"
+                value={1}
+                className="ms-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 md:m-0 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
+              />
+              <label htmlFor="eliminaNO">No</label>
+              <input
+                {...registerImprevisti("eliminaDopoEstrazione")}
+                id="eliminaNO"
+                name="eliminaDopoEstrazione"
+                type="radio"
+                value={0}
+                className="ms-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 md:m-0 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
+              />
+            </div>
+          )}
+          <label className="my-1 flex w-full items-center gap-4 self-start text-xs font-semibold md:text-sm">
             Descrizione Imprevisto
             {errorsImprevisti.descrizione && (
               <span className="text-[--clr-prim]">
@@ -177,52 +214,13 @@ export function AddImprevisti(props) {
             {...registerImprevisti("descrizione", {
               required: disabledField || refState === "speciale" ? false : true,
             })}
-            rows={isMobile ? 3 : 4}
+            rows={isMobile ? 3 : tipoImprevisto === "speciali" ? 2 : 4}
             disabled={disabledField || refState === "speciale"}
             id="descrizione"
             placeholder="Descrizione dell'imprevisto"
-            className="w-full rounded p-1 text-xs md:text-sm font-semibold text-black placeholder:italic"
+            className="w-full rounded p-1 text-xs font-semibold text-black placeholder:italic md:text-sm"
           />
-
-          {/* ELIMINA DOPO IMPREVISTO ? */}
-
-
-          {refState === "speciale" && <div
-            className="flex items-center gap-2 border border-pink-500 py-2 pe-2"
-            style={
-              tipoImprevisto === "settimana" ? { visibility: "hidden" } : {}
-            }
-          >
-            <label
-              htmlFor="eliminaDopoEstrazione"
-              className="text-xs md:text-sm font-semibold text-gray-300 md:me-4"
-            >
-              Vuoi che venga eliminato dopo l'estrazione?
-            </label>
-            <label htmlFor="eliminaYES">Sì</label>
-            <input
-              {...registerImprevisti("ultEstrazione")}
-              disabled={disabledField || refState === "speciale"}
-              id="eliminaYES"
-              name="ultEstrazione"
-              defaultChecked
-              type="radio"
-              value={1}
-              className="ms-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 md:m-0 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
-            />
-            <label htmlFor="eliminaNO">No</label>
-            <input
-              {...registerImprevisti("ultEstrazione")}
-              disabled={disabledField || refState === "speciale"}
-              id="eliminaNO"
-              name="ultEstrazione"
-              type="radio"
-              value={0}
-              className="ms-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 md:m-0 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
-            />
-          </div>}
         </div>
-        
       </section>
       <button
         type="submit"
