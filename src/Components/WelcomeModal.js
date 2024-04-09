@@ -25,8 +25,8 @@ const WelcomeModal = () => {
           transition={{ ease: "easeOut", delay: .5, duration: .7, type : "spring"}}
         >
           <MdInfoOutline size={56} />
-          <h2 className="bold font-H2 text-6xl">Benvenuta/o!</h2>
-          <p className="w-3/4 md:w-1/2 text-center font-Descr text-2xl">
+          <h2 className="bold font-H2 text-3xl md:text-6xl">Benvenuta/o!</h2>
+          <p className="w-4/5 md:w-1/2 text-center font-Descr text-xl md:text-2xl">
             Apri il menu in alto a destra e clicca su{" "}
             <span className="font-bold">ISTRUZIONI</span> per iniziare a
             padroneggiare la Web App!
