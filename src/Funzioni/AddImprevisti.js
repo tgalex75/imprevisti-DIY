@@ -41,7 +41,7 @@ export function AddImprevisti(props) {
   return (
     <form
       onSubmit={handleSubmitImprevisti(addImpr)}
-      className="flex h-full w-full flex-col items-center border border-dashed justify-between gap-2 md:px-4 py-2 font-normal"
+      className="flex h-full w-full flex-col items-center justify-between gap-2 md:px-4 py-2 font-normal"
     >
       <h3 className="text-center uppercase text-[--clr-prim]">
         Aggiungi il tuo imprevisto
@@ -114,7 +114,7 @@ export function AddImprevisti(props) {
                 maxLength: 20,
               })}
               disabled
-              className="block w-2/3 md:w-1/3 self-start rounded p-1 text-sm  font-semibold uppercase text-black placeholder:normal-case placeholder:italic disabled:placeholder:text-black"
+              className="block w-2/3 md:w-1/3 self-start rounded p-1 text-sm font-semibold uppercase text-black placeholder:normal-case placeholder:italic disabled:placeholder:text-black"
               placeholder="IMPREVISTO SPECIALE"
             />
           )}
