@@ -22,9 +22,9 @@ const AnimatedRoutes = () => {
                 <Route path="/editor-imprevisti" element={<EditorImprevisti />} />
                 <Route path="/calcolo-media" element={<MediaOverall />} />
                 <Route path="/serie-negativa" element={<SerieNegativa />} />
-                <Route path="/rinnovi" element={<RinnoviIngaggiMercato tipoImprevisto="Rinnovi" />} />
-                <Route path="/ingaggi" element={<RinnoviIngaggiMercato tipoImprevisto="Ingaggi" />} />
-                <Route path="/mercato" element={<RinnoviIngaggiMercato tipoImprevisto="Mercato" />} />
+                <Route path="/rinnovi" element={<RinnoviIngaggiMercato tipoImprevisto="rinnovi" />} />
+                <Route path="/ingaggi" element={<RinnoviIngaggiMercato tipoImprevisto="ingaggi" />} />
+                <Route path="/mercato" element={<RinnoviIngaggiMercato tipoImprevisto="mercato" />} />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
         </AnimatePresence>

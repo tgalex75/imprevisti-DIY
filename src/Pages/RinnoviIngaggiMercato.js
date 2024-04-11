@@ -10,14 +10,13 @@ import { isMobile } from "react-device-detect";
 import random from "random";
 
 const RinnoviIngaggiMercato = (props) => {
-  const { ingaggi, rinnovi, mercato } = useContext(CartContext);
+  const tipoImprevisto = props.tipoImprevisto;
+
+  const { [tipoImprevisto] : baseEstrazioni } = useContext(CartContext);
 
   const [casuale, setCasuale] = useState(null);
 
-  const tipoImprevisto = props.tipoImprevisto;
   
-  const baseEstrazioni = {tipoImprevisto}
-
   const fetchList = () => {
     setCasuale(
       baseEstrazioni?.length > 0 ? random.choice(baseEstrazioni) : initialMessage,
@@ -26,50 +25,31 @@ const RinnoviIngaggiMercato = (props) => {
 
   const listaMsgImprevisto = [
     {
-      tipo: "Rinnovi",
-      msgIsImpr: "Mercenario",
-      msgNoImpr: "Trattativa Libera",
-      descrIsImpr: "Raddoppia l'ingaggio o cessione obbligatoria",
-      descrNoImpr: "Gestisci la trattativa liberamente",
+      tipo: "rinnovi",
       linkTo: "/rinnovi",
       linkDesc: "Imprevisti Rinnovi",
     },
     {
-      tipo: "Mercato",
-      msgIsImpr: "Mercenario",
-      msgNoImpr: "Bilancio in Ordine",
-      descrIsImpr: "Accetta l'offerta o raddoppia l'ingaggio appena possibile",
-      descrNoImpr: "Totale libertà di scelta",
+      tipo: "mercato",
       linkTo: "/mercato",
       linkDesc: "Imprevisti Calciomercato",
     },
     {
-      tipo: "Ingaggi",
-      msgIsImpr: "Visite non superate",
-      msgNoImpr: "Visite OK",
-      descrIsImpr:
-        "La trattativa salta e non può essere ritentata fino alla prossima finestra di mercato.",
-      descrNoImpr: "La trattativa viene chiusa senza conseguenze.",
+      tipo: "ingaggi",
       linkTo: "/ingaggi",
       linkDesc: "Imprevisti di Ingaggio",
     },
   ];
 
-  const msgImprevisto = listaMsgImprevisto.filter(
-    (el) => el.tipo === tipoImprevisto,
-  );
-
   const linksRapidi = listaMsgImprevisto.filter(
     (el) => el.tipo !== tipoImprevisto,
   );
-
-  //const { msgNoImpr, msgIsImpr, descrIsImpr, descrNoImpr } = msgImprevisto[0];
 
   const { titolo, descrizione, isImprev } = casuale
     ? casuale
     : {};
 
-  const titoloH1 = isMobile ? tipoImprevisto : "Imprevisto " + tipoImprevisto;
+  const titoloH1 = isMobile ? tipoImprevisto : "Imprevisto " + tipoImprevisto.toUpperCase();
 
   return (
     <>
@@ -80,7 +60,7 @@ const RinnoviIngaggiMercato = (props) => {
               className={
                 isImprev > 0
                   ? "relative top-2 h-1/4 items-center font-H2  text-5xl font-extrabold uppercase [filter:drop-shadow(.05rem_.05rem_0.1rem_#000)] md:flex md:h-full md:text-6xl"
-                  : "hidden md:h-full"
+                  : "invisible md:h-full"
               }
             >
               IMPREVISTO!
@@ -88,13 +68,11 @@ const RinnoviIngaggiMercato = (props) => {
             <h3 className="h-1/4 items-center justify-center text-3xl font-extrabold uppercase [filter:drop-shadow(.05rem_.05rem_0.1rem_#000)] md:flex md:flex-1 md:text-6xl">
               {titolo}
             </h3>
-            {isImprev > 0 && (
               <p
                 className={`mt-4 h-2/4 px-4 font-Descr text-xl [filter:drop-shadow(.05rem_.05rem_0.1rem_#000)] md:h-full md:w-2/3 ${descrizione.length > 40 ? "h-3/4 md:text-2xl" : "md:text-3xl"}`}
               >
                 {descrizione}
               </p>
-            )}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

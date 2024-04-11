@@ -1,7 +1,8 @@
 import { useState, useRef, useCallback, useContext } from "react";
 import { motion } from "framer-motion";
-import { AddImprIngaggi } from "../Funzioni/AddImprIngaggi";
 import { CartContext } from "../context/regContext";
+import { AddImprIngaggi } from "../Funzioni/AddImprIngaggi";
+import { AddImprevisti } from "../Funzioni/AddImprevisti";
 
 const EditorImprevisti = () => {
   const [selectRefState, setSelectRefState] = useState("prepartita");
@@ -14,6 +15,11 @@ const EditorImprevisti = () => {
     setSelectRefState(selectRef.current.value);
   }, []);
 
+  const imprevistiSecondari =
+    selectRefState === "ingaggi" ||
+    selectRefState === "mercato" ||
+    selectRefState === "rinnovi";
+
   return (
     <section className="flex h-full w-full flex-col items-center justify-between overflow-y-auto p-2 font-bold md:overflow-hidden md:px-4 md:pb-2">
       <h1>Editor Imprevisti</h1>
@@ -21,11 +27,9 @@ const EditorImprevisti = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.7, duration: 0.7 }}
-        className="h-full w-full items-center justify-around rounded-lg bg-black/50 text-gray-300 md:flex md:flex-col md:overflow-hidden md:px-2"
+        className="h-full w-full items-center justify-between rounded-lg bg-black/50 text-gray-300 md:flex md:flex-col md:overflow-hidden md:px-2"
       >
-        {/* Lista Imprevisti Attuale */}
-
-        <div className="relative flex h-1/2 w-full flex-col items-center justify-center overflow-y-auto p-1 text-xs md:h-2/3 md:gap-2 md:text-base">
+        <div className="relative flex h-20 w-full flex-col items-center justify-start overflow-y-auto p-1 text-xs md:h-16 md:gap-2 md:text-base">
           <header className="w-full items-center justify-between p-1 md:flex">
             <h3 className="w-full text-center uppercase text-[--clr-prim] md:w-1/3 md:text-start">
               Imprevisti {selectRefState}
@@ -38,7 +42,7 @@ const EditorImprevisti = () => {
               <select
                 ref={selectRef}
                 onChange={handleSelectRef}
-                className="w-fit self-center rounded-md border p-1 text-sm font-semibold dark:border-black/20 dark:bg-black/30 dark:text-gray-300 dark:placeholder-black/10 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                className="w-fit self-center rounded-md border p-1 text-xs font-semibold md:text-base dark:border-black/20 dark:bg-black/30 dark:text-gray-300 dark:placeholder-black/10 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               >
                 <option value="prepartita">Prepartita</option>
                 <option value="settimana">Settimana</option>
@@ -53,20 +57,15 @@ const EditorImprevisti = () => {
               Numero imprevisti: {registro?.length}
             </strong>
           </header>
-
-          {/* Rendered Elements */}
         </div>
 
         {/* Form "AGGIUNGI Imprevisti" */}
 
-        {/* <div className="flex w-full items-center px-1 pb-8"> */}
-          {selectRefState === "ingaggi" && (
-            <AddImprIngaggi
-              tipoImprevisto={selectRefState}
-              registro={registro}
-            />
-          )}
-        {/* </div> */}
+        {imprevistiSecondari ? (
+          <AddImprIngaggi tipoImprevisto={selectRefState} registro={registro} />
+        ) : (
+          <AddImprevisti tipoImprevisto={selectRefState} registro={registro} />
+        )}
       </motion.div>
     </section>
   );

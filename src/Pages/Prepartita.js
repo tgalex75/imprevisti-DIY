@@ -56,7 +56,7 @@ const Prepartita = () => {
               </>
             ) : (
               <>
-                <FetchImprevisto />
+                <FetchImprevisto tipoImprevisto="prepartita"/>
               </>
             )}
             {ultEstrazione === 1 && !isImprSpeciale && <SecondaEstrazione />}

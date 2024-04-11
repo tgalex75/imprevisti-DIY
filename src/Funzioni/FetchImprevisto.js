@@ -4,13 +4,15 @@ import { initialMessage } from "../Components/InitialMessage";
 import random from "random";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
 
-export default function FetchData() {
+export default function FetchData(props) {
   const { speciali } = useContext(CartContext);
 
   const casuale =
     speciali?.length > 0 ? random.choice(speciali) : initialMessage;
 
   const { titolo, descrizione } = casuale;
+
+  const {tipoImprevisto} = props
 
   return (
     <>
@@ -31,7 +33,7 @@ export default function FetchData() {
           {descrizione}
         </p>
       </section>
-      <SecondaEstrazione />
+      {tipoImprevisto !== "settimana" && <SecondaEstrazione />}
     </>
   );
 }
