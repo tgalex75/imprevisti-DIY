@@ -20,7 +20,7 @@ export function AddImprevisti(props) {
     try {
       const id = await db[tipoImprevisto].add({
         titolo: disabledField ? "NESSUN IMPREVISTO" : (refState === "speciale" ? "IMPREVISTO SPECIALE" : data.titolo ),
-        descrizione: data.descrizione,
+        descrizione: refState === "imprevisto" ? data.descrizione : "",
         isImprev: disabledField ? 0 : 1,
         ultEstrazione: disabledField ? 0 : parseInt(data.ultEstrazione),
       });
