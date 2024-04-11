@@ -44,7 +44,7 @@ const RinnoviIngaggiMercato = (props) => {
       linkDesc: "Imprevisti Calciomercato",
     },
     {
-      tipo: "Ingaggio",
+      tipo: "Ingaggi",
       msgIsImpr: "Visite non superate",
       msgNoImpr: "Visite OK",
       descrIsImpr:
@@ -63,7 +63,7 @@ const RinnoviIngaggiMercato = (props) => {
     (el) => el.tipo !== tipoImprevisto,
   );
 
-  const { msgNoImpr, msgIsImpr, descrIsImpr, descrNoImpr } = msgImprevisto[0];
+  //const { msgNoImpr, msgIsImpr, descrIsImpr, descrNoImpr } = msgImprevisto[0];
 
   const { titolo, descrizione, isImprev } = casuale
     ? casuale
