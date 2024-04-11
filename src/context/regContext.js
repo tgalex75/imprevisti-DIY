@@ -9,6 +9,9 @@ export const CartProvider = ({ children }) => {
   const prepartita = useLiveQuery(async () => db.prepartita.toArray());
   const settimana = useLiveQuery(async () => db.settimana.toArray());
   const serienegativa = useLiveQuery(async () => db.serienegativa.toArray());
+  const rinnovi = useLiveQuery(async () => db.rinnovi.toArray());
+  const ingaggi = useLiveQuery(async () => db.ingaggi.toArray());
+  const mercato = useLiveQuery(async () => db.mercato.toArray());
   const speciali = useLiveQuery(async () => db.speciali.toArray());
 
 
@@ -18,6 +21,9 @@ export const CartProvider = ({ children }) => {
         prepartita,
         settimana,
         serienegativa,
+        rinnovi,
+        ingaggi,
+        mercato,
         speciali,
       }}
     >
