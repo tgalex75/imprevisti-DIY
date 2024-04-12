@@ -18,19 +18,35 @@ export function AddImprevisti(props) {
   };
 
   const disabledField = refState === "noImprevisto";
+  const isListaSpeciali = tipoImprevisto === "speciali";
+  const isListaSettimana = tipoImprevisto === "settimana";
 
   async function addImpr(data, e) {
     try {
-      const id = await db[tipoImprevisto].add({
-        titolo: disabledField
-          ? "NESSUN IMPREVISTO"
-          : refState === "speciale"
-            ? "IMPREVISTO SPECIALE"
-            : data.titolo,
-        descrizione: refState === "imprevisto" ? data.descrizione : "",
-        isImprev: disabledField ? 0 : 1,
-        ultEstrazione: disabledField ? 0 : parseInt(data.ultEstrazione),
-      });
+      const id = await db[tipoImprevisto].add(
+        isListaSpeciali
+          ? {
+              titolo: disabledField
+                ? "NESSUN IMPREVISTO"
+                : refState === "speciale"
+                  ? "IMPREVISTO SPECIALE"
+                  : data.titolo,
+              descrizione: refState === "imprevisto" ? data.descrizione : "",
+              isImprev: disabledField ? 0 : 1,
+              ultEstrazione: disabledField ? 0 : parseInt(data.ultEstrazione),
+              eliminaDopoEstrazione: parseInt(data?.eliminaDopoEstrazione),
+            }
+          : {
+              titolo: disabledField
+                ? "NESSUN IMPREVISTO"
+                : refState === "speciale"
+                  ? "IMPREVISTO SPECIALE"
+                  : data.titolo,
+              descrizione: refState === "imprevisto" ? data.descrizione : "",
+              isImprev: disabledField ? 0 : 1,
+              ultEstrazione: disabledField ? 0 : parseInt(data.ultEstrazione),
+            },
+      );
       console.log(id);
       e.target.reset();
     } catch (error) {
@@ -50,7 +66,7 @@ export function AddImprevisti(props) {
       {isMobile ? (
         <ul className="flex h-1/2 w-full flex-col gap-1 overflow-y-auto rounded-lg border p-2">
           <div className="flex min-h-8 items-center bg-gray-700/80 ps-2 text-[.5rem] font-bold uppercase italic leading-none">
-            <div className="w-full flex-col">
+            <div className="w-full">
               <span className="block w-full border-gray-300/20 bg-transparent p-1">
                 Impr.S/N
               </span>
@@ -58,15 +74,18 @@ export function AddImprevisti(props) {
                 Titolo
               </span>
             </div>
-            <div
-              className="w-full flex-col"
-              style={
-                tipoImprevisto === "settimana" ? { visibility: "hidden" } : {}
-              }
-            >
-              <span className="block w-full border-gray-300/20 bg-transparent p-1">
-                Ulteriore Estrazione
+            <div className="w-full">
+              <span
+                className={`border-gray-300/20 bg-transparent p-1 ${isListaSpeciali ? "inline-block w-1/2" : "block w-full"}`}
+                style={isListaSettimana ? { visibility: "hidden" } : {}}
+              >
+                {isListaSpeciali ? "Ult.Estr." : "Ulteriore Estrazione"}
               </span>
+              {isListaSpeciali && (
+                <span className="w-1/2 border-gray-300/20 bg-transparent p-1">
+                  El. Dopo Estr.
+                </span>
+              )}
               <span className="block w-full border-gray-300/20 bg-transparent p-1">
                 Descrizione
               </span>
@@ -77,28 +96,31 @@ export function AddImprevisti(props) {
           {registro?.map((el) => (
             <li
               key={el.id}
-              className="flex h-12 gap-2 bg-gray-400/20 ps-2 text-[.6rem] font-normal leading-none odd:bg-gray-700/20 hover:bg-[--clr-prim] hover:text-black"
+              className="flex h-12 gap-2 bg-gray-400/20 ps-2 text-[.6rem] font-semibold uppercase leading-none odd:bg-gray-700/20 hover:bg-[--clr-prim] hover:text-black"
             >
               <div className="flex w-full flex-col p-1">
-                <span className="block h-full w-full bg-transparent font-semibold uppercase">
+                <span className="block h-full w-full bg-transparent">
                   {el.isImprev === 1 ? "SI" : "NO"}
                 </span>
-                <span className="block h-full w-full bg-transparent text-start font-semibold uppercase">
+                <span className="block h-full w-full bg-transparent text-start ">
                   {el.titolo}
                 </span>
               </div>
-              <div className="flex w-full flex-col justify-around p-1">
-                <span
-                  className="block h-full w-full bg-transparent text-start font-semibold uppercase"
-                  style={
-                    tipoImprevisto === "settimana"
-                      ? { visibility: "hidden" }
-                      : {}
-                  }
-                >
-                  {el.ultEstrazione === 1 ? "SI" : "NO"}
-                </span>
-                <span className="block h-full w-full overflow-y-auto bg-transparent text-start font-semibold uppercase">
+              <div className="flex w-full flex-col justify-around py-1">
+                <div className="w-full h-full">
+                  <span
+                    className={`border-gray-300/20 bg-transparent p-1 ${isListaSpeciali ? "inline-block w-1/2" : "block w-full"}`}
+                    style={isListaSettimana ? { visibility: "hidden" } : {}}
+                  >
+                    {el.ultEstrazione === 1 ? "SI" : "NO"}
+                  </span>
+                  {isListaSpeciali && (
+                    <span className="inline w-1/2 border-gray-300/20 bg-transparent p-1 ms-1">
+                      {el.eliminaDopoEstrazione === 1 ? "SI" : "NO"}
+                    </span>
+                  )}
+                </div>
+                <span className="block h-full w-full overflow-y-auto bg-transparent text-start">
                   {el.descrizione}
                 </span>
               </div>
@@ -110,6 +132,8 @@ export function AddImprevisti(props) {
             </li>
           ))}
         </ul>
+
+        /* DESKTOP */
       ) : (
         <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto rounded-lg border p-2">
           <div className="flex min-h-4 items-center justify-between gap-2 bg-gray-700/80 ps-2 text-center text-xs font-bold uppercase italic">
@@ -124,37 +148,49 @@ export function AddImprevisti(props) {
             </span>
             <span
               className="h-full w-1/6 border-gray-300/20 bg-transparent p-1"
-              style={
-                tipoImprevisto === "settimana" ? { visibility: "hidden" } : {}
-              }
+              style={isListaSettimana ? { visibility: "hidden" } : {}}
             >
               Ulteriore Estrazione
             </span>
+            {isListaSpeciali && (
+              <span
+                className="h-full w-1/6 rounded bg-transparent p-1 font-semibold"
+                style={isListaSettimana ? { visibility: "hidden" } : {}}
+              >
+                Elimina dopo Estrazione
+              </span>
+            )}
 
             <MdClear size={24} className="mx-2" />
           </div>
           {registro?.map((el) => (
             <li
               key={el.id}
-              className="text-md flex min-h-4 items-center justify-between gap-2 bg-gray-700/20 ps-2 text-center font-normal hover:bg-[--clr-prim] hover:text-black"
+              className="text-md flex min-h-4 items-center justify-between gap-2 bg-gray-700/20 ps-2 text-center uppercase font-semibold hover:bg-[--clr-prim] hover:text-black"
             >
-              <span className="h-full w-1/6 rounded border border-gray-300/20 bg-transparent p-1 font-semibold uppercase">
+              <span className="h-full w-1/6 rounded border border-gray-300/20 bg-transparent p-1 ">
                 {el.isImprev === 1 ? "SI" : "NO"}
               </span>
-              <span className="h-full w-1/6 rounded border border-gray-300/20 bg-transparent p-1 text-start font-semibold uppercase">
+              <span className="h-full w-1/6 rounded border border-gray-300/20 bg-transparent p-1 text-start">
                 {el.titolo}
               </span>
-              <span className="h-full w-3/6 overflow-auto rounded border border-gray-300/20 bg-transparent p-1 text-start font-semibold">
+              <span className="h-full w-3/6 overflow-auto rounded border border-gray-300/20 bg-transparent p-1 text-start">
                 {el.descrizione}
               </span>
               <span
-                className="h-full w-1/6 rounded border border-gray-300/20 bg-transparent p-1 font-semibold"
-                style={
-                  tipoImprevisto === "settimana" ? { visibility: "hidden" } : {}
-                }
+                className="h-full w-1/6 rounded border border-gray-300/20 bg-transparent p-1"
+                style={isListaSettimana ? { visibility: "hidden" } : {}}
               >
                 {el.ultEstrazione === 1 ? "SI" : "NO"}
               </span>
+              {isListaSpeciali && (
+                <span
+                  className="h-full w-1/6 rounded border border-gray-300/20 bg-transparent p-1"
+                  style={isListaSettimana ? { visibility: "hidden" } : {}}
+                >
+                  {el.eliminaDopoEstrazione === 1 ? "SI" : "NO"}
+                </span>
+              )}
               <MdDeleteForever
                 size={24}
                 className="mx-2 cursor-pointer transition-all hover:scale-125"
@@ -196,13 +232,13 @@ export function AddImprevisti(props) {
             >
               <option value="imprevisto">IMPREVISTO</option>
               <option
-                className={`${tipoImprevisto === "speciali" && "hidden"}`}
+                className={`${isListaSpeciali && "hidden"}`}
                 value="noImprevisto"
               >
                 NESSUN IMPREVISTO
               </option>
               <option
-                className={`${tipoImprevisto === "prepartita" || tipoImprevisto === "settimana" ? "visible" : "hidden"}`}
+                className={`${tipoImprevisto === "prepartita" || isListaSettimana ? "visible" : "hidden"}`}
                 value="speciale"
               >
                 IMPREVISTO SPECIALE
@@ -249,45 +285,78 @@ export function AddImprevisti(props) {
                 />
               )}
               <div
-                className="flex items-center gap-2 py-2 pe-2"
-                style={
-                  tipoImprevisto === "settimana" ? { visibility: "hidden" } : {}
-                }
+                className="flex flex-col items-center justify-around gap-2 py-1 md:flex-row md:py-2"
+                style={isListaSettimana ? { visibility: "hidden" } : {}}
               >
-                {" "}
-                <label
-                  htmlFor="ultEstrazione"
-                  className="text-sm font-semibold text-gray-300 md:me-4"
-                >
-                  Ulteriore estrazione necessaria dopo la prima?
-                </label>
-                <label htmlFor="ultEstrazioneYES">Sì</label>
-                <input
-                  {...registerImprevisti("ultEstrazione")}
-                  disabled={disabledField || refState === "speciale"}
-                  id="ultEstrazioneYES"
-                  name="ultEstrazione"
-                  defaultChecked
-                  type="radio"
-                  value={1}
-                  className="ms-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 md:m-0 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
-                />
-                <label htmlFor="ultEstrazioneNO">No</label>
-                <input
-                  {...registerImprevisti("ultEstrazione")}
-                  disabled={disabledField || refState === "speciale"}
-                  id="ultEstrazioneNO"
-                  name="ultEstrazione"
-                  type="radio"
-                  value={0}
-                  className="ms-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 md:m-0 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
-                />
+                {/* ULTERIORE ESTRAZIONE */}
+
+                <div className="flex items-center gap-1 py-1 text-xs md:gap-2 md:py-2 md:text-sm">
+                  <label
+                    htmlFor="ultEstrazione"
+                    className="font-semibold text-gray-300 md:me-4"
+                  >
+                    Ulteriore estrazione necessaria dopo la prima?
+                  </label>
+                  <label htmlFor="ultEstrazioneYES">Sì</label>
+                  <input
+                    {...registerImprevisti("ultEstrazione")}
+                    disabled={disabledField || refState === "speciale"}
+                    id="ultEstrazioneYES"
+                    name="ultEstrazione"
+                    defaultChecked
+                    type="radio"
+                    value={1}
+                    className="ms-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 md:m-0 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
+                  />
+                  <label htmlFor="ultEstrazioneNO">No</label>
+                  <input
+                    {...registerImprevisti("ultEstrazione")}
+                    disabled={disabledField || refState === "speciale"}
+                    id="ultEstrazioneNO"
+                    name="ultEstrazione"
+                    type="radio"
+                    value={0}
+                    className="ms-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 md:m-0 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
+                  />
+                </div>
+
+                {/* ELIMINA VOCE */}
+
+                {isListaSpeciali && (
+                  <div className="flex items-center gap-1 py-1 text-xs md:gap-2 md:py-2 md:text-sm">
+                    <label
+                      htmlFor="eliminaDopoEstrazione"
+                      className="font-semibold text-gray-300 md:me-4"
+                    >
+                      Vuoi eliminare la voce dopo l'estrazione?
+                    </label>
+                    <label htmlFor="eliminaDopoEstrazioneYES">Sì</label>
+                    <input
+                      {...registerImprevisti("eliminaDopoEstrazione")}
+                      id="eliminaDopoEstrazioneYES"
+                      name="eliminaDopoEstrazione"
+                      defaultChecked
+                      type="radio"
+                      value={1}
+                      className="ms-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 md:m-0 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
+                    />
+                    <label htmlFor="eliminaDopoEstrazioneNO">No</label>
+                    <input
+                      {...registerImprevisti("eliminaDopoEstrazione")}
+                      id="eliminaDopoEstrazioneNO"
+                      name="eliminaDopoEstrazione"
+                      type="radio"
+                      value={0}
+                      className="ms-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 md:m-0 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
+                    />
+                  </div>
+                )}
               </div>
             </div>
 
             {/* DESCRIZIONE */}
-            <div className="flex flex-col gap-2 md:w-1/2 ">
-              <label className="my-1 flex w-full items-center gap-4 self-start text-sm font-semibold">
+            <div className="flex flex-col gap-2 text-xs md:w-1/2 md:text-sm">
+              <label className="my-1 flex w-full items-center gap-4 self-start font-semibold">
                 Descrizione Imprevisto
                 {errorsImprevisti.descrizione && (
                   <span className="text-[--clr-prim]">
@@ -305,7 +374,7 @@ export function AddImprevisti(props) {
                 disabled={disabledField || refState === "speciale"}
                 id="descrizione"
                 placeholder="Descrizione dell'imprevisto"
-                className="w-full rounded p-1 text-sm font-semibold text-black placeholder:italic"
+                className="w-full rounded p-1 font-semibold text-black placeholder:italic"
               />
             </div>
           </section>

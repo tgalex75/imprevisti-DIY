@@ -1,4 +1,5 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { DelImprevisti } from "./DelImprevisti";
 import { CartContext } from "../context/regContext";
 import { initialMessage } from "../Components/InitialMessage";
 import random from "random";
@@ -10,9 +11,15 @@ export default function FetchData(props) {
   const casuale =
     speciali?.length > 0 ? random.choice(speciali) : initialMessage;
 
-  const { titolo, descrizione } = casuale;
+  const { id, titolo, descrizione, eliminaDopoEstrazione } = casuale;
 
-  const {tipoImprevisto} = props
+  const { tipoImprevisto } = props;
+
+  useEffect(() => {
+    setTimeout(() => {
+      eliminaDopoEstrazione === 1 && DelImprevisti("speciali", id);
+    }, 1500);
+  });
 
   return (
     <>
