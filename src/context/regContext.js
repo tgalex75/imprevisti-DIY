@@ -13,6 +13,8 @@ export const CartProvider = ({ children }) => {
   const ingaggi = useLiveQuery(async () => db.ingaggi.toArray());
   const mercato = useLiveQuery(async () => db.mercato.toArray());
   const speciali = useLiveQuery(async () => db.speciali.toArray());
+  
+  const sezioniAttive = useLiveQuery(async () => db.sezioniAttive.toArray());
 
 
   return (
@@ -25,6 +27,7 @@ export const CartProvider = ({ children }) => {
         ingaggi,
         mercato,
         speciali,
+        sezioniAttive
       }}
     >
       {children}

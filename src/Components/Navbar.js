@@ -26,7 +26,8 @@ const Navbar = () => {
     { id: 7, voceLi: "Mercato", linkTo: "/mercato" },
     { id: 8, voceLi: "Media Overall", linkTo: "/calcolo-media" },
     { id: 10, voceLi: "Editor Imprevisti", linkTo: "/editor-imprevisti" },
-    { id: 11, voceLi: "Istruzioni", linkTo: pdfLink, target: "_blank" },
+    { id: 11, voceLi: "Impostazioni App", linkTo: "/impostazioni" },
+    { id: 12, voceLi: "Istruzioni", linkTo: pdfLink, target: "_blank" },
   ];
 
   //Sostituire div con <Link> from react-router
@@ -92,7 +93,7 @@ const Navbar = () => {
         <ul
           style={isOpenMenu ? { right: 0 } : { right: "-100%" }}
           onClick={handleClick}
-          className="absolute top-0 z-[-1] flex h-screen w-full flex-col items-center justify-start gap-10 bg-black/95 py-4 text-center text-gray-300 transition-[0.5s] md:w-[30vw] md:justify-around md:gap-4 md:py-3"
+          className="absolute top-0 z-[-1] flex h-screen w-full flex-col items-center justify-start bg-black/95 py-2 text-center text-gray-300 transition-[0.5s] md:w-[30vw] md:justify-around md:gap-2 md:py-2"
         >
           {linksMenu}
         </ul>

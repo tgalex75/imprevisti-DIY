@@ -9,6 +9,7 @@ db.version(2).stores({
     ingaggi: "++id, titolo, descrizione, isImprev",
     mercato: "++id, titolo, descrizione, isImprev",
     speciali: "++id, titolo, descrizione, isImprev, eliminaDopoEstrazione",
+    sezioniAttive: "id, nomeSezione, isVisible"
 })
 db.version(1).stores({
     prepartita: "++id, titolo, descrizione, isImprev, ultEstrazione",
