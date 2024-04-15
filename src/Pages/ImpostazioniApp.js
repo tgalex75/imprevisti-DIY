@@ -4,9 +4,10 @@ import { motion } from "framer-motion";
 import FormImpostazioni from "../Components/FormImpostazioni";
 
 const ImpostazioniApp = () => {
-  const { sezioniattive } = useContext(CartContext);
 
-  console.log(sezioniattive);
+  const { sezioniAttive } = useContext(CartContext);
+
+  console.log(sezioniAttive.length)
 
   return (
     <section className="flex h-full w-full select-none flex-col items-center justify-start gap-2 px-4 py-6 font-bold md:justify-around md:p-8">
@@ -26,12 +27,16 @@ const ImpostazioniApp = () => {
           id="container"
           className=" grid grid-cols-2 gap-6 border border-pink-500 p-4 md:grid-cols-3"
         >
+          {/* <FormImpostazioni element="Prepartita" />
           <FormImpostazioni element="Settimana" />
           <FormImpostazioni element="Serie Negativa" />
-          <FormImpostazioni element="Prepartita" />
           <FormImpostazioni element="Rinnovi" />
           <FormImpostazioni element="Ingaggi" />
-          <FormImpostazioni element="Mercato" />
+          <FormImpostazioni element="Mercato" /> */}
+          {sezioniAttive.map((el)=> (
+            <FormImpostazioni id={el.id } element={el.nomeSezione} isvisible={el.isVisible} />
+          )
+        )}
         </div>
       </motion.main>
     </section>

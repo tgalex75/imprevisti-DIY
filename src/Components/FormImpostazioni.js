@@ -1,15 +1,15 @@
-import React from "react";
-import { v4 as uuidv4 } from "uuid";
 import { db } from "../Data/db";
 import { useForm } from "react-hook-form";
 
 const FormImpostazioni = (props) => {
-  const { element } = props;
+  const { id, element, isVisible } = props;
 
   const aggiornaImpostazioni = async (data) => {
     try {
-        const id = await db.sezioniAttive.put(data);
-        console.log(id)
+      const idSezione = await db.sezioniAttive.update(id, {
+        isVisible: data.isVisible,
+      });
+      console.log(idSezione);
     } catch (error) {
       console.log(error);
     }
@@ -24,22 +24,21 @@ const FormImpostazioni = (props) => {
     >
       <div
         className="flex flex-col items-center gap-2 rounded-lg bg-[--clr-prim] p-4 text-sm md:text-base"
-        key={element}
+        key={id}
       >
         <h4 className="w-full font-semibold uppercase">{element}</h4>
-        <input {...register("id")} value={uuidv4()} className="hidden" />
-        <input
+        {/* <input
           {...register("nomeSezione")}
           value={element}
           className="hidden"
-        />
+        /> */}
         <div className="flex h-full w-full items-center justify-around gap-2">
           <label htmlFor="isVisibleYES" className="w-full">
             Attivo
           </label>
           <input
             {...register("isVisible")}
-            defaultChecked
+            checked={isVisible}
             id="isVisibleYES"
             value={1}
             className="w-4"
@@ -51,6 +50,7 @@ const FormImpostazioni = (props) => {
           </label>
           <input
             {...register("isVisible")}
+            checked={!isVisible}
             id={"isVisibleNO"}
             value={0}
             className="w-4"
