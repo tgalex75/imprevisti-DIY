@@ -26,7 +26,7 @@ const Navbar = () => {
     { id: 7, voceLi: "Mercato", linkTo: "/mercato" },
     { id: 8, voceLi: "Media Overall", linkTo: "/calcolo-media" },
     { id: 10, voceLi: "Editor Imprevisti", linkTo: "/editor-imprevisti" },
-    { id: 11, voceLi: "Impostazioni App", linkTo: "/impostazioni" },
+    //{ id: 11, voceLi: "Impostazioni App", linkTo: "/impostazioni" },
     { id: 12, voceLi: "Istruzioni", linkTo: pdfLink, target: "_blank" },
   ];
 
