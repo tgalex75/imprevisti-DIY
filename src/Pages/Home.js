@@ -15,74 +15,79 @@ import mercato from "../assets/imgs/mercato.jpg";
 import WelcomeModal from "../Components/WelcomeModal";
 import { CartContext } from "../context/regContext";
 
-const dettagliImprevisti = [
-  { id: 1, impr: "Imprevisti prepartita", img: Img1, link: "/prepartita" },
-  {
-    id: 2,
-    impr: "Imprevisti Settimanali",
-    img: isMobile ? Img2Mobile : Img2,
-    link: "/settimana",
-  },
-  {
-    id: 3,
-    impr: "Imprevisti serie negativa",
-    img: isMobile ? Img3Mobile : Img3,
-    link: "/serie-negativa",
-  },
-  {
-    id: 4,
-    impr: "Imprevisti Rinnovi",
-    img: rinnovi,
-    link: "/rinnovi",
-  },
-];
-const dettagliImprevisti2 = [
-  {
-    id: 5,
-    impr: "Imprevisti Ingaggi",
-    img: isMobile ? ingaggiMobile : ingaggi,
-    link: "/ingaggi",
-  },
-  {
-    id: 6,
-    impr: "Imprevisti Mercato",
-    img: mercato,
-    link: "/mercato",
-  },
-  {
-    id: 7,
-    impr: "Media Overall",
-    img: Img4,
-    link: "/calcolo-media",
-  },
-  {
-    id: 8,
-    impr: "Editor Imprevisti",
-    img: Img5,
-    link: "/editor-imprevisti",
-  },
-];
-
-const numeroVoci1 = dettagliImprevisti.length;
-const numeroVoci2 = dettagliImprevisti2.length;
-
 const Home = () => {
-
   const { sezioniAttive } = useContext(CartContext);
 
-  console.log(sezioniAttive);
+  const visibleId = (idToMatch) => {
+    const newArr = sezioniAttive?.filter((voce) => voce.id === idToMatch * 100).map((el => el.isVisible))
+    return newArr[0] === 1;
+  };
+
+  console.log(visibleId(1))
+
   
+  const dettagliImprevisti = [
+    { id: 1, impr: "Imprevisti prepartita", img: Img1, link: "/prepartita" },
+    {
+      id: 2,
+      impr: "Imprevisti Settimanali",
+      img: isMobile ? Img2Mobile : Img2,
+      link: "/settimana",
+    },
+    {
+      id: 3,
+      impr: "Imprevisti serie negativa",
+      img: isMobile ? Img3Mobile : Img3,
+      link: "/serie-negativa",
+    },
+    {
+      id: 4,
+      impr: "Imprevisti Rinnovi",
+      img: rinnovi,
+      link: "/rinnovi",
+    },
+  ];
+  const dettagliImprevisti2 = [
+    {
+      id: 5,
+      impr: "Imprevisti Ingaggi",
+      img: isMobile ? ingaggiMobile : ingaggi,
+      link: "/ingaggi",
+    },
+    {
+      id: 6,
+      impr: "Imprevisti Mercato",
+      img: mercato,
+      link: "/mercato",
+    },
+    {
+      id: 7,
+      impr: "Media Overall",
+      img: Img4,
+      link: "/calcolo-media",
+    },
+    {
+      id: 8,
+      impr: "Editor Imprevisti",
+      img: Img5,
+      link: "/editor-imprevisti",
+    },
+  ];
+ 
+  const numeroVoci1 = dettagliImprevisti.length;
+  const numeroVoci2 = dettagliImprevisti2.length;
+
   return (
     <>
       <WelcomeModal />
-      <section className="flex h-1/2 w-full flex-wrap items-center justify-around bg-stone-950 font-bold text-gray-800 md:w-full md:h-1/2 md:flex-row md:flex-nowrap">
+      <section className="flex h-1/2 w-full flex-wrap items-center justify-around bg-stone-950 font-bold text-gray-800 md:h-1/2 md:w-full md:flex-row md:flex-nowrap">
         {dettagliImprevisti.map((el) => (
           <div
             key={el.id}
             style={{
               zIndex: el.id,
             }}
-            className={`ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] group flex h-1/2 w-1/2 cursor-pointer items-center justify-start transition-all duration-500 [box-shadow:-12px_0px_10px_-3px_rgba(2,2,2,0.5)] hover:text-gray-300 md:h-full md:w-1/${numeroVoci1} md:hover:h-full md:hover:w-full`}
+            className={`${!visibleId(el.id) && "hidden"} ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] group flex h-1/2 w-1/2 cursor-pointer items-center justify-start transition-all duration-500 [box-shadow:-12px_0px_10px_-3px_rgba(2,2,2,0.5)] hover:text-gray-300 md:h-full md:w-1/${numeroVoci1} md:hover:h-full md:hover:w-full`}
           >
             <Link to={el.link} className="flex h-full w-full bg-transparent">
               <h2
@@ -101,14 +106,14 @@ const Home = () => {
           </div>
         ))}
       </section>
-      <section className="flex h-1/2 w-full flex-col flex-wrap items-center justify-around bg-stone-950 font-bold text-gray-800 md:w-full md:h-1/2 md:flex-row md:flex-nowrap">
+      <section className="flex h-1/2 w-full flex-col flex-wrap items-center justify-around bg-stone-950 font-bold text-gray-800 md:h-1/2 md:w-full md:flex-row md:flex-nowrap">
         {dettagliImprevisti2.map((el) => (
           <div
             key={el.id}
             style={{
               zIndex: el.id,
             }}
-            className={`ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] group flex h-1/${numeroVoci2/2} w-1/2 cursor-pointer items-center justify-start transition-all duration-500 [box-shadow:-12px_0px_10px_-3px_rgba(2,2,2,0.5)] hover:text-gray-300 md:h-full md:w-1/${numeroVoci2} md:hover:h-full md:hover:w-full`}
+            className={`ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] group flex h-1/${numeroVoci2 / 2} w-1/2 cursor-pointer items-center justify-start transition-all duration-500 [box-shadow:-12px_0px_10px_-3px_rgba(2,2,2,0.5)] hover:text-gray-300 md:h-full md:w-1/${numeroVoci2} md:hover:h-full md:hover:w-full`}
           >
             <Link to={el.link} className="flex h-full w-full bg-transparent">
               <h2
@@ -127,7 +132,6 @@ const Home = () => {
           </div>
         ))}
       </section>
-     
     </>
   );
 };

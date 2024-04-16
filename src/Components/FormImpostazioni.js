@@ -1,72 +1,36 @@
 import { db } from "../Data/db";
-import { useForm } from "react-hook-form";
+import { useState, useEffect } from "react";
 
 const FormImpostazioni = (props) => {
-  const { id, element, isVisible } = props;
+  const { id, nomeSezione, isVisible } = props;
 
-  const aggiornaImpostazioni = async (data) => {
+  const [savedValues, setSavedValues] = useState(isVisible);
+
+  const handleChange = () => {
+    setSavedValues((prevValue) =>
+      prevValue === 1 ? (prevValue = 0) : (prevValue = 1),
+    );
+  };
+
+  const updateValuesOnDB = async () => {
     try {
-      const idSezione = await db.sezioniAttive.update(id, {
-        isVisible: data.isVisible,
-      });
-      console.log(idSezione);
+      await db.sezioniAttive.update(id, { isVisible: savedValues });
     } catch (error) {
       console.log(error);
     }
   };
 
-  const { register, handleSubmit } = useForm();
+  useEffect(() => {
+    updateValuesOnDB();// eslint-disable-next-line
+  }, [savedValues]);
 
   return (
-    <form
-      onSubmit={handleSubmit(aggiornaImpostazioni)}
-      className="flex h-3/4 w-5/6 select-none flex-col items-center justify-start gap-2 rounded-lg px-4 py-6 font-normal md:justify-around md:p-4"
+    <section
+      onClick={handleChange}
+      className={`flex min-h-24 w-full select-none flex-col items-center justify-center rounded-lg bg-[--clr-sec] p-4 text-center text-xs font-normal md:justify-around md:gap-2 md:text-sm ${savedValues === 0 ? "opacity-30" : {}}`}
     >
-      <div
-        className="flex flex-col items-center gap-2 rounded-lg bg-[--clr-prim] p-4 text-sm md:text-base"
-        key={id}
-      >
-        <h4 className="w-full font-semibold uppercase">{element}</h4>
-        {/* <input
-          {...register("nomeSezione")}
-          value={element}
-          className="hidden"
-        /> */}
-        <div className="flex h-full w-full items-center justify-around gap-2">
-          <label htmlFor="isVisibleYES" className="w-full">
-            Attivo
-          </label>
-          <input
-            {...register("isVisible")}
-            checked={isVisible}
-            id="isVisibleYES"
-            value={1}
-            className="w-4"
-            type="radio"
-            name="isVisible"
-          />
-          <label htmlFor="isVisibleNO" className="w-full">
-            Disattivo
-          </label>
-          <input
-            {...register("isVisible")}
-            checked={!isVisible}
-            id={"isVisibleNO"}
-            value={0}
-            className="w-4"
-            type="radio"
-            name="isVisible"
-          />
-        </div>
-      </div>
-
-      <button
-        type="submit"
-        className="w-full rounded-lg bg-sky-700 py-1 font-normal hover:bg-sky-600"
-      >
-        Salva
-      </button>
-    </form>
+      <h4 className="w-full font-semibold uppercase">{nomeSezione}</h4>
+    </section>
   );
 };
 
