@@ -15,6 +15,7 @@ export const CartProvider = ({ children }) => {
 
   //const sezioniAttive = useLiveQuery(async () => db.sezioniAttive.toArray());
 
+
   return (
     <CartContext.Provider
       value={{

@@ -14,7 +14,7 @@ const FormImpostazioni = (props) => {
 
   const updateValuesOnDB = async () => {
     try {
-      await db.sezioniAttive.put(id, { isVisible: savedValues });
+      await db.sezioniAttive.update(id, { isVisible: savedValues });
     } catch (error) {
       console.log(error);
     }
