@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import {useEffect, createContext } from "react";
 import { db } from "../Data/db";
 import { useLiveQuery } from "dexie-react-hooks";
 
@@ -13,8 +13,25 @@ export const CartProvider = ({ children }) => {
   const mercato = useLiveQuery(async () => db.mercato.toArray());
   const speciali = useLiveQuery(async () => db.speciali.toArray());
 
-  const sezioniAttive = useLiveQuery(async () => db.sezioniAttive.toArray());
+  
+  const defaultValues = [
+    { id: 100, nomeSezione: "Prepartita", isVisible: 1 },
+    { id: 200, nomeSezione: "Settimana", isVisible: 1 },
+    { id: 300, nomeSezione: "Serie Negativa", isVisible: 1 },
+    { id: 400, nomeSezione: "Rinnovi", isVisible: 1 },
+    { id: 500, nomeSezione: "Ingaggi", isVisible: 1 },
+    { id: 600, nomeSezione: "Mercato", isVisible: 1 },
+  ];
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await db.sezioniAttive.toArray();
+      result.length === 0 && db.sezioniAttive.bulkAdd(defaultValues)
+    };
+    fetchData(); // eslint-disable-next-line
+  }, []);
+
+  const sezioniAttive = useLiveQuery(async () => db.sezioniAttive.toArray());
 
   return (
     <CartContext.Provider
@@ -27,6 +44,7 @@ export const CartProvider = ({ children }) => {
         mercato,
         speciali,
         sezioniAttive,
+        defaultValues
       }}
     >
       {children}

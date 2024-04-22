@@ -1,28 +1,12 @@
-import { useState, useEffect } from "react";
+import { useContext } from "react";
+import {CartContext} from "../context/regContext"
 import { motion } from "framer-motion";
 import FormImpostazioni from "../Components/FormImpostazioni";
-import { db } from "../Data/db";
 
 const ImpostazioniApp = () => {
-  const [ dati, setDati ] = useState([]);
 
-  const defaultValues = [
-    { id: 100, nomeSezione: "Prepartita", isVisible: 1 },
-    { id: 200, nomeSezione: "Settimana", isVisible: 1 },
-    { id: 300, nomeSezione: "Serie Negativa", isVisible: 1 },
-    { id: 400, nomeSezione: "Rinnovi", isVisible: 1 },
-    { id: 500, nomeSezione: "Ingaggi", isVisible: 1 },
-    { id: 600, nomeSezione: "Mercato", isVisible: 1 },
-  ];
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await db.sezioniAttive.toArray();
-      result.length === 0 && db.sezioniAttive.bulkAdd(defaultValues)
-      setDati(result.length > 0 ? result : defaultValues); // If no record is found, use default values
-    };
-    fetchData(); // eslint-disable-next-line
-  }, []);
+  const {sezioniAttive} = useContext(CartContext)
+  
 
   return (
     <section className="flex h-full w-full select-none flex-col items-center justify-start gap-2 px-4 py-6 font-semibold md:justify-around md:p-8">
@@ -44,7 +28,7 @@ const ImpostazioniApp = () => {
           id="container"
           className="grid grid-cols-2 justify-center gap-6 p-4 md:grid-cols-3"
         >
-          {dati?.map((el) => (
+          {sezioniAttive?.map((el) => (
             <FormImpostazioni
               key={el.id}
               id={el.id}
