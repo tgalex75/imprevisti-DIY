@@ -18,33 +18,31 @@ import { CartContext } from "../context/regContext";
 const Home = () => {
   const { sezioniAttive } = useContext(CartContext);
 
-  const visibleId = (idToMatch) => {
-    const newArr = sezioniAttive?.filter((voce) => voce.id === idToMatch * 100).map((el => el.isVisible))
-    return newArr;
-  };
-
-  console.log(visibleId(1))
+  const isVisibleArray = sezioniAttive?.map(number => number.isVisible)
 
   
   const dettagliImprevisti = [
-    { id: 1, impr: "Imprevisti prepartita", img: Img1, link: "/prepartita" },
+    { id: 1, impr: "Imprevisti prepartita", img: Img1, link: "/prepartita", isVisible: isVisibleArray[0] },
     {
       id: 2,
       impr: "Imprevisti Settimanali",
       img: isMobile ? Img2Mobile : Img2,
       link: "/settimana",
+      isVisible: isVisibleArray[1]
     },
     {
       id: 3,
       impr: "Imprevisti serie negativa",
       img: isMobile ? Img3Mobile : Img3,
       link: "/serie-negativa",
+      isVisible: isVisibleArray[2]
     },
     {
       id: 4,
       impr: "Imprevisti Rinnovi",
       img: rinnovi,
       link: "/rinnovi",
+      isVisible: isVisibleArray[3]
     },
   ];
   const dettagliImprevisti2 = [
@@ -53,12 +51,14 @@ const Home = () => {
       impr: "Imprevisti Ingaggi",
       img: isMobile ? ingaggiMobile : ingaggi,
       link: "/ingaggi",
+      isVisible: isVisibleArray[4]
     },
     {
       id: 6,
       impr: "Imprevisti Mercato",
       img: mercato,
       link: "/mercato",
+      isVisible: isVisibleArray[5]
     },
     {
       id: 7,
@@ -87,7 +87,7 @@ const Home = () => {
             style={{
               zIndex: el.id,
             }}
-            className={`ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] group flex h-1/2 w-1/2 cursor-pointer items-center justify-start transition-all duration-500 [box-shadow:-12px_0px_10px_-3px_rgba(2,2,2,0.5)] hover:text-gray-300 md:h-full md:w-1/${numeroVoci1} md:hover:h-full md:hover:w-full`}
+            className={`${el.isVisible===0 && "hidden"} ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] group flex h-1/2 w-1/2 cursor-pointer items-center justify-start transition-all duration-500 [box-shadow:-12px_0px_10px_-3px_rgba(2,2,2,0.5)] hover:text-gray-300 md:h-full md:w-1/${numeroVoci1} md:hover:h-full md:hover:w-full`}
           >
             <Link to={el.link} className="flex h-full w-full bg-transparent">
               <h2
