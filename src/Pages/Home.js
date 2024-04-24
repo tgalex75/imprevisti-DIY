@@ -89,7 +89,7 @@ const Home = () => {
             style={{
               zIndex: el.id,
             }}
-            className={`${el.isVisible === 0 && "hidden"} basis-1/2 md:basis-1/4 grow ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] group cursor-pointer overflow-hidden items-center justify-start transition-all duration-500 [box-shadow:-12px_0px_10px_-3px_rgba(2,2,2,0.5)] hover:text-gray-300`}
+            className={`${el.isVisible === 0 && "hidden"} basis-1/2 md:basis-1/4 grow ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] group cursor-pointer overflow-hidden items-center justify-start transition-all duration-500 [box-shadow:-12px_0px_10px_-3px_rgba(2,2,2,0.5)] hover:text-[--clr-text]`}
           >
             <Link to={el.link} className="flex h-full bg-transparent">
               <h2

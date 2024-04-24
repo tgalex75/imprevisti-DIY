@@ -228,7 +228,7 @@ export function AddImprevisti(props) {
               defaultChecked
               ref={ref}
               onChange={handleRefState}
-              className="w-fit self-center rounded-md border p-1 text-xs font-semibold md:text-sm dark:border-gray-300/80 dark:bg-black/30 dark:text-gray-300 dark:placeholder-black/10 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+              className="w-fit self-center rounded-md border p-1 text-xs font-semibold md:text-sm dark:border-gray-300/80 dark:bg-black/30 dark:text-[--clr-text] dark:placeholder-black/10 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             >
               <option value="imprevisto">IMPREVISTO</option>
               <option
@@ -293,7 +293,7 @@ export function AddImprevisti(props) {
                 <div className="flex items-center gap-1 py-1 text-xs md:gap-2 md:py-2 md:text-sm">
                   <label
                     htmlFor="ultEstrazione"
-                    className="font-semibold text-gray-300 md:me-4"
+                    className="font-semibold text-[--clr-text] md:me-4"
                   >
                     Ulteriore estrazione necessaria dopo la prima?
                   </label>
@@ -326,7 +326,7 @@ export function AddImprevisti(props) {
                   <div className="flex items-center gap-1 py-1 text-xs md:gap-2 md:py-2 md:text-sm">
                     <label
                       htmlFor="eliminaDopoEstrazione"
-                      className="font-semibold text-gray-300 md:me-4"
+                      className="font-semibold text-[--clr-text] md:me-4"
                     >
                       Vuoi eliminare la voce dopo l'estrazione?
                     </label>

@@ -15,7 +15,7 @@ const ModuloTattica = (props) => {
           >
             <label
               htmlFor={`p${el.id}`}
-              className="md:text-md block text-xs md:text-sm font-semibold text-gray-300"
+              className="md:text-md block text-xs md:text-sm font-semibold text-[--clr-text]"
             >
               {giocatoreNum} {el.nome}
             </label>

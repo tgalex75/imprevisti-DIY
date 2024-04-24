@@ -7,10 +7,20 @@
   padding: 0;
 }
 
-:root {
+.dark-mode {
   --clr-prim: #ce7500;
   --clr-sec: #169427;
   --clr-ter: #1d0e3a;
+  --clr-text: #eee;
+  --clr-bg: #1c1c1c;
+}
+
+.light-mode {
+  --clr-prim: #ce7500;
+  --clr-sec: #1d0e3a;
+  --clr-ter: #008080;
+  --clr-text: #1c1c1c;
+  --clr-bg: #eee;
 }
 
 body {
@@ -20,8 +30,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--clr-ter);
-  color: #eeeeee;
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
   overflow: hidden;
 }
 

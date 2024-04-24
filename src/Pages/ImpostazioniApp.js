@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import FormImpostazioni from "../Components/FormImpostazioni";
 
 const ImpostazioniApp = () => {
-  const { sezioniAttive } = useContext(CartContext);
+  const { sezioniAttive, cambiaTema } = useContext(CartContext);
 
   return (
     <section className="flex h-full w-full select-none flex-col items-center justify-start gap-2 px-4 py-6 font-semibold md:justify-around md:p-8">
@@ -35,6 +35,7 @@ const ImpostazioniApp = () => {
             />
           ))}
         </div>
+        <button className="p-4" onClick={cambiaTema}>CLICCA</button>
       </motion.main>
     </section>
   );

@@ -75,7 +75,7 @@ const Navbar = () => {
                     filter: "drop-shadow(.25rem .25rem 0.15rem #222)",
                   }
             }
-            className="fill-gray-300 hover:fill-gray-200"
+            className="fill-[--clr-tex] hover:fill-gray-200"
           />
         </Link>
       </div>
@@ -86,20 +86,20 @@ const Navbar = () => {
             style={{
               filter: "drop-shadow(.25rem .25rem 0.15rem #222)",
             }}
-            className="fill-gray-300 hover:fill-gray-200"
+            className="fill-[--clr-tex] hover:fill-gray-200"
             onClick={handleClick}
           />
         ) : (
           <MdClose
             size={isMobile ? 28 : 36}
-            className="fill-gray-300 hover:fill-gray-200"
+            className="fill-[--clr-tex] hover:fill-gray-200"
             onClick={handleClick}
           />
         )}
         <ul
           style={isOpenMenu ? { right: 0 } : { right: "-100%" }}
           onClick={handleClick}
-          className="absolute top-0 z-[-1] flex h-screen w-full flex-col items-center justify-start bg-black/95 py-2 text-center text-gray-300 transition-[0.5s] md:w-[30vw] md:justify-around md:gap-2 md:py-2"
+          className="absolute top-0 z-[-1] flex h-screen w-full flex-col items-center justify-start bg-black/95 py-2 text-center text-[--clr-text] transition-[0.5s] md:w-[30vw] md:justify-around md:gap-2 md:py-2"
         >
           {linksMenu}
         </ul>

@@ -108,7 +108,7 @@ export function AddImprIngaggi(props) {
           >
             <label
               htmlFor="isImprevTRUE"
-              className="text-xs font-semibold text-gray-300 md:me-4 md:text-sm"
+              className="text-xs font-semibold text-[--clr-text] md:me-4 md:text-sm"
             >
               È un imprevisto?
             </label>

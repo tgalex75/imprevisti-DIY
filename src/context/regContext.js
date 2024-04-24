@@ -1,4 +1,4 @@
-import {useEffect, createContext } from "react";
+import { useEffect, createContext, useState } from "react";
 import { db } from "../Data/db";
 import { useLiveQuery } from "dexie-react-hooks";
 
@@ -13,7 +13,6 @@ export const CartProvider = ({ children }) => {
   const mercato = useLiveQuery(async () => db.mercato.toArray());
   const speciali = useLiveQuery(async () => db.speciali.toArray());
 
-  
   const defaultValues = [
     { id: 100, nomeSezione: "Prepartita", isVisible: 1 },
     { id: 200, nomeSezione: "Settimana", isVisible: 1 },
@@ -26,12 +25,35 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await db.sezioniAttive.toArray();
-      result.length === 0 && db.sezioniAttive.bulkAdd(defaultValues)
+      result.length === 0 && db.sezioniAttive.bulkAdd(defaultValues);
     };
     fetchData(); // eslint-disable-next-line
   }, []);
 
   const sezioniAttive = useLiveQuery(async () => db.sezioniAttive.toArray());
+
+  // Salvare lo stato "theme" nel localStorage
+  const getFromLocalStorage = () => {
+    return localStorage.getItem("theme")
+      ? localStorage.getItem("theme")
+      : "dark-mode";
+  };
+
+  // Funzione che aggiorna il tema in base allo State
+
+  const [theme, setTheme] = useState(getFromLocalStorage());
+
+  // Funzione che cambia il tema in base al valore dello State
+
+  const cambiaTema = () => {
+    theme === "light-mode" ? setTheme("dark-mode") : setTheme("light-mode");
+  };
+
+  // Al cambio ddello state "theme" verrà attaccata una classe al TAG html
+  useEffect(() => {
+    document.documentElement.className = theme;
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   return (
     <CartContext.Provider
@@ -44,7 +66,9 @@ export const CartProvider = ({ children }) => {
         mercato,
         speciali,
         sezioniAttive,
-        defaultValues
+        defaultValues,
+        theme,
+        cambiaTema,
       }}
     >
       {children}

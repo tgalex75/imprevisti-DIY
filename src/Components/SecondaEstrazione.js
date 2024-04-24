@@ -46,7 +46,7 @@ const SecondaEstrazione = () => {
         <div className="flex w-full flex-col items-center justify-around gap-2">
           <label
             htmlFor="name-with-label"
-            className="self-start text-xs text-gray-300 md:text-sm"
+            className="self-start text-xs text-[--clr-text] md:text-sm"
           >
             A chi toccherà oggi?
           </label>
@@ -94,7 +94,7 @@ const SecondaEstrazione = () => {
                   }}
                 >
                   <span
-                    className={`block pt-2 font-['Oswald'] text-4xl font-bold md:text-7xl ${randomJersey === awaykit ? "text-[--clr-ter]" : "text-gray-300"}`}
+                    className={`block pt-2 font-['Oswald'] text-4xl font-bold md:text-7xl ${randomJersey === awaykit ? "text-[--clr-ter]" : "text-[--clr-text]"}`}
                   >
                     {player}
                   </span>

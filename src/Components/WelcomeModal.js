@@ -38,7 +38,7 @@ const WelcomeModal = () => {
           >
             Ok... NON MOSTRARE di nuovo!
           </button>
-          <MdClose size={28} className="absolute top-2 right-2 cursor-pointer" onClick={()=>setIsModalOpen(false)}/>
+          <MdClose size={28} className="absolute top-2 right-2 cursor-pointer transition-all hover:scale-150" onClick={()=>setIsModalOpen(false)}/>
         </motion.div>
       </>
     )

@@ -87,7 +87,7 @@ const Home = () => {
             style={{
               zIndex: el.id,
             }}
-            className={`${el.isVisible===0 && "hidden"} ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] group flex h-1/2 w-1/2 cursor-pointer items-center justify-start transition-all duration-500 [box-shadow:-12px_0px_10px_-3px_rgba(2,2,2,0.5)] hover:text-gray-300 md:h-full md:w-1/${numeroVoci1} md:hover:h-full md:hover:w-full`}
+            className={`${el.isVisible===0 && "hidden"} ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] group flex h-1/2 w-1/2 cursor-pointer items-center justify-start transition-all duration-500 [box-shadow:-12px_0px_10px_-3px_rgba(2,2,2,0.5)] hover:text-[--clr-text] md:h-full md:w-1/${numeroVoci1} md:hover:h-full md:hover:w-full`}
           >
             <Link to={el.link} className="flex h-full w-full bg-transparent">
               <h2
@@ -113,7 +113,7 @@ const Home = () => {
             style={{
               zIndex: el.id,
             }}
-            className={`${el.isVisible===0 && "hidden"} ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] group flex h-1/2 w-1/2 cursor-pointer items-center justify-start transition-all duration-500 [box-shadow:-12px_0px_10px_-3px_rgba(2,2,2,0.5)] hover:text-gray-300 md:h-full md:w-1/${numeroVoci2} md:hover:h-full md:hover:w-full`}
+            className={`${el.isVisible===0 && "hidden"} ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] group flex h-1/2 w-1/2 cursor-pointer items-center justify-start transition-all duration-500 [box-shadow:-12px_0px_10px_-3px_rgba(2,2,2,0.5)] hover:text-[--clr-text] md:h-full md:w-1/${numeroVoci2} md:hover:h-full md:hover:w-full`}
           >
             <Link to={el.link} className="flex h-full w-full bg-transparent">
               <h2

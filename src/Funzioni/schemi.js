@@ -21,7 +21,7 @@ export const mySelect = (labelText, ref, func, arr) => {
     <div className="flex gap-1 flex-col">
       <label
         htmlFor="tattica"
-        className="block text-xs font-medium text-gray-300"
+        className="block text-xs font-medium text-[--clr-text]"
       >
         {labelText}
       </label>

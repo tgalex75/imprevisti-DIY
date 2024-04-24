@@ -32,7 +32,7 @@ const EditorImprevisti = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.7, duration: 0.7 }}
-        className="h-full w-full items-center justify-between rounded-lg bg-black/50 text-gray-300 md:flex md:flex-col md:overflow-hidden md:px-2"
+        className="h-full w-full items-center justify-between rounded-lg bg-black/50 text-[--clr-text] md:flex md:flex-col md:overflow-hidden md:px-2"
       >
         <div className="relative flex h-20 w-full flex-col items-center justify-start overflow-y-auto p-1 text-xs md:h-16 md:gap-2 md:text-base">
           <header className="w-full items-center justify-between overflow-hidden p-1 md:flex">
@@ -47,7 +47,7 @@ const EditorImprevisti = () => {
               <select
                 ref={selectRef}
                 onChange={handleSelectRef}
-                className="w-fit self-center rounded-md border p-1 text-xs font-semibold md:text-base dark:border-black/20 dark:bg-black/30 dark:text-gray-300 dark:placeholder-black/10 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                className="w-fit self-center rounded-md border p-1 text-xs font-semibold md:text-base dark:border-black/20 dark:bg-black/30 dark:text-[--clr-text] dark:placeholder-black/10 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               >
                 {isVisibleArray[0] && (
                   <option value="prepartita">Prepartita</option>
