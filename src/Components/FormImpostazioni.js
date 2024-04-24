@@ -27,7 +27,7 @@ const FormImpostazioni = (props) => {
   return (
     <section
       onClick={handleChange}
-      className={`flex min-h-24 w-full select-none flex-col cursor-pointer hover:scale-110 transition-all items-center justify-center rounded-lg bg-[--clr-sec] p-4 text-center text-xs font-normal md:justify-around md:gap-2 md:text-sm ${savedValues === 0 ? "opacity-50 bg-gray-500" : {}}`}
+      className={`flex min-h-24 md:min-h-48 w-full select-none flex-col cursor-pointer hover:scale-110 transition-all items-center justify-center rounded-lg bg-[--clr-sec] p-4 text-center text-xs font-normal md:justify-around md:gap-2 md:text-lg ${savedValues === 0 ? "opacity-50 bg-gray-500" : {}}`}
     >
       <h4 className="w-full font-semibold uppercase">{nomeSezione}</h4>
     </section>

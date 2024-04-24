@@ -1,12 +1,10 @@
 import { useContext } from "react";
-import {CartContext} from "../context/regContext"
+import { CartContext } from "../context/regContext";
 import { motion } from "framer-motion";
 import FormImpostazioni from "../Components/FormImpostazioni";
 
 const ImpostazioniApp = () => {
-
-  const {sezioniAttive} = useContext(CartContext)
-  
+  const { sezioniAttive } = useContext(CartContext);
 
   return (
     <section className="flex h-full w-full select-none flex-col items-center justify-start gap-2 px-4 py-6 font-semibold md:justify-around md:p-8">
@@ -26,7 +24,7 @@ const ImpostazioniApp = () => {
         </h2>
         <div
           id="container"
-          className="grid grid-cols-2 justify-center gap-6 p-4 md:grid-cols-3"
+          className="grid grid-cols-2 justify-center gap-6 rounded-lg border p-4 md:w-3/4 md:grid-cols-3 md:gap-12 md:border-none md:p-12"
         >
           {sezioniAttive?.map((el) => (
             <FormImpostazioni

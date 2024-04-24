@@ -9,6 +9,11 @@ const EditorImprevisti = () => {
 
   const { [selectRefState]: registro } = useContext(CartContext);
 
+  const { sezioniAttive, defaultValues } = useContext(CartContext);
+
+  const isVisibleArray =
+    sezioniAttive?.map((number) => number.isVisible) || defaultValues;
+
   const selectRef = useRef(null);
 
   const handleSelectRef = useCallback(() => {
@@ -30,7 +35,7 @@ const EditorImprevisti = () => {
         className="h-full w-full items-center justify-between rounded-lg bg-black/50 text-gray-300 md:flex md:flex-col md:overflow-hidden md:px-2"
       >
         <div className="relative flex h-20 w-full flex-col items-center justify-start overflow-y-auto p-1 text-xs md:h-16 md:gap-2 md:text-base">
-          <header className="w-full items-center justify-between p-1 md:flex">
+          <header className="w-full items-center justify-between overflow-hidden p-1 md:flex">
             <h3 className="w-full text-center uppercase text-[--clr-prim] md:w-1/3 md:text-start">
               Imprevisti {selectRefState}
             </h3>
@@ -44,13 +49,19 @@ const EditorImprevisti = () => {
                 onChange={handleSelectRef}
                 className="w-fit self-center rounded-md border p-1 text-xs font-semibold md:text-base dark:border-black/20 dark:bg-black/30 dark:text-gray-300 dark:placeholder-black/10 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               >
-                <option value="prepartita">Prepartita</option>
-                <option value="settimana">Settimana</option>
-                <option value="serienegativa">Serie Negativa</option>
+                {isVisibleArray[0] && (
+                  <option value="prepartita">Prepartita</option>
+                )}
+                {isVisibleArray[1] && (
+                  <option value="settimana">Settimana</option>
+                )}
+                {isVisibleArray[2] && (
+                  <option value="serienegativa">Serie Negativa</option>
+                )}
                 <option value="speciali">Speciali</option>
-                <option value="rinnovi">Rinnovi</option>
-                <option value="ingaggi">Ingaggi</option>
-                <option value="mercato">Mercato</option>
+                {isVisibleArray[3] && <option value="rinnovi">Rinnovi</option>}
+                {isVisibleArray[4] && <option value="ingaggi">Ingaggi</option>}
+                {isVisibleArray[5] && <option value="mercato">Mercato</option>}
               </select>
             </label>
             <strong className="mt-2 block text-center text-xs font-semibold md:mt-0 md:w-1/3 md:text-end md:text-base">

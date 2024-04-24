@@ -20,7 +20,7 @@ const Home = () => {
 
   const isVisibleArray = sezioniAttive?.map((number) => number.isVisible) || defaultValues
 
-  const countIsVisible = isVisibleArray?.filter(num => num === 1).length
+  //const countIsVisible = isVisibleArray?.filter(num => num === 1).length + 2
 
   const dettagliImprevisti = [
     {
@@ -82,19 +82,19 @@ const Home = () => {
   return (
     <>
       <WelcomeModal />
-      <section className="grid h-full grid-cols-2 md:grid-cols-4 bg-stone-950 font-bold text-gray-800">
+      <section className={`flex h-full w-full flex-wrap bg-stone-950 font-bold text-gray-800`}>
         {dettagliImprevisti.map((el) => (
           <div
             key={el.id}
             style={{
               zIndex: el.id,
             }}
-            className={`${el.isVisible === 0 && "hidden"/* , countIsVisible < 5 && "last:col-span-2" */} w-full ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] group cursor-pointer overflow-hidden items-center justify-start transition-all duration-500 [box-shadow:-12px_0px_10px_-3px_rgba(2,2,2,0.5)] hover:text-gray-300 md:hover:h-full`}
+            className={`${el.isVisible === 0 && "hidden"} basis-1/2 md:basis-1/4 grow ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] group cursor-pointer overflow-hidden items-center justify-start transition-all duration-500 [box-shadow:-12px_0px_10px_-3px_rgba(2,2,2,0.5)] hover:text-gray-300`}
           >
             <Link to={el.link} className="flex h-full bg-transparent">
               <h2
                 style={{}}
-                className={`flex rotate-180 items-center justify-center bg-[--clr-ter] px-4 text-center text-[.4rem] font-bold uppercase text-gray-200 drop-shadow-lg transition-all [text-shadow:rgb(34,34,34)_0px_4px_4px] [writing-mode:vertical-lr] group-hover:w-1/6 group-hover:border-l-[.35rem] group-hover:border-[--clr-ter] group-hover:bg-[--clr-sec] group-hover:px-6 md:justify-start md:px-2 md:ps-8 md:text-[1.5dvw] md:group-hover:w-auto md:group-hover:border-l-[.8rem]`}
+                className={`flex rotate-180 items-center justify-center bg-[--clr-ter] px-4 text-center text-[.4rem] font-bold uppercase text-gray-200 drop-shadow-lg transition-all [text-shadow:rgb(34,34,34)_0px_4px_4px] [writing-mode:vertical-lr] group-hover:w-1/4 group-hover:border-l-[.35rem] group-hover:border-[--clr-ter] group-hover:bg-[--clr-sec] group-hover:px-6 md:justify-start md:px-2 md:ps-8 md:text-[1.5dvw] md:group-hover:w-auto md:group-hover:border-l-[.8rem]`}
               >
                 {el.impr}
               </h2>
@@ -102,7 +102,7 @@ const Home = () => {
                 style={{
                   backgroundImage: `url(${el.img})`,
                 }}
-                className={`flex w-full items-end justify-end bg-black/20 bg-cover bg-center bg-no-repeat grayscale transition-all group-hover:w-full group-hover:grayscale-0 md:group-hover:w-full`}
+                className={`flex w-full items-end justify-end bg-black/20 bg-cover bg-center bg-no-repeat grayscale transition-all group-hover:w-full group-hover:scale-110 group-hover:grayscale-0 md:group-hover:w-full`}
               ></div>
             </Link>
           </div>
