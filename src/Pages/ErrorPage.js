@@ -1,4 +1,5 @@
 import React from "react";
+import { MdErrorOutline } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const ErrorPage = () => {
@@ -11,12 +12,13 @@ const ErrorPage = () => {
     zIndex: "10",
   };
   return (
-    <div style={styles}>
-      <h1>Page Not Found</h1>
+    <div style={styles} className="flex flex-col items-center">
+      <MdErrorOutline size={56} />
+      <h1>Questa pagina non esiste</h1>
       <Link
         to="/home"
         style={{
-          fontSize: "1rem",
+          fontSize: "1.2rem",
           color: "var(--clr-primary)",
           fontWeight: "600",
           padding: "2rem",
