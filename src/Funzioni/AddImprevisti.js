@@ -323,7 +323,7 @@ export function AddImprevisti(props) {
                 {/* ELIMINA VOCE */}
 
                 {isListaSpeciali && (
-                  <div className="flex items-center gap-1 py-1 text-xs md:gap-2 md:py-2 md:text-sm">
+                  <div className="flex items-center gap-1 py-1 text-xs md:gap-2 md:py-2 md:px-2 md:text-sm">
                     <label
                       htmlFor="eliminaDopoEstrazione"
                       className="font-semibold text-gray-300 md:me-4"
