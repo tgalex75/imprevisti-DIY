@@ -16,6 +16,10 @@ const RinnoviIngaggiMercato = (props) => {
 
   const [casuale, setCasuale] = useState(null);
 
+  const { sezioniAttive, defaultValues } = useContext(CartContext);
+
+  const isVisibleArray =
+    sezioniAttive?.map((number) => number.isVisible) || defaultValues;
   
   const fetchList = () => {
     setCasuale(
@@ -28,16 +32,19 @@ const RinnoviIngaggiMercato = (props) => {
       tipo: "rinnovi",
       linkTo: "/rinnovi",
       linkDesc: "Imprevisti Rinnovi",
-    },
-    {
-      tipo: "mercato",
-      linkTo: "/mercato",
-      linkDesc: "Imprevisti Calciomercato",
+      isVisible: isVisibleArray[3],
     },
     {
       tipo: "ingaggi",
       linkTo: "/ingaggi",
       linkDesc: "Imprevisti di Ingaggio",
+      isVisible: isVisibleArray[4],
+    },
+    {
+      tipo: "mercato",
+      linkTo: "/mercato",
+      linkDesc: "Imprevisti Calciomercato",
+      isVisible: isVisibleArray[5],
     },
   ];
 
@@ -93,7 +100,7 @@ const RinnoviIngaggiMercato = (props) => {
                   ease: "easeIn",
                 }}
                 key={i}
-                className="flex w-full items-center justify-start gap-4 hover:text-[--clr-ter]"
+                className={`flex w-full items-center justify-start gap-4 hover:text-[--clr-sec] ${el.isVisible === 0 && "hidden"}`}
               >
                 <MdArrowForward />
                 <Link to={el.linkTo}>{el.linkDesc}</Link>
@@ -108,7 +115,7 @@ const RinnoviIngaggiMercato = (props) => {
               ease: "easeIn",
             }}
             key="prepartita"
-            className="flex w-full items-center justify-start gap-4 hover:text-[--clr-ter]"
+            className={`flex w-full items-center justify-start gap-4 hover:text-[--clr-sec] ${isVisibleArray[0] === 0 && "hidden"}`}
           >
             <MdArrowForward />
             <Link to="/prepartita">Prepartita</Link>
