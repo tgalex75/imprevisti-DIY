@@ -7,6 +7,8 @@ import Settimana from "../Pages/Settimana";
 import MediaOverall from "../Pages/MediaOverall";
 import SerieNegativa from "../Pages/SerieNegativa";
 import EditorImprevisti from "../Pages/EditorImprevisti";
+import ImpostazioniApp from "../Pages/ImpostazioniApp";
+import RinnoviIngaggiMercato from "../Pages/RinnoviIngaggiMercato";
 import ErrorPage from "../Pages/ErrorPage";
 
 const AnimatedRoutes = () => {
@@ -19,8 +21,12 @@ const AnimatedRoutes = () => {
                 <Route path="/prepartita" element={<Prepartita />} />
                 <Route path="/settimana" element={<Settimana />} />
                 <Route path="/editor-imprevisti" element={<EditorImprevisti />} />
+                <Route path="/impostazioni" element={<ImpostazioniApp />} />
                 <Route path="/calcolo-media" element={<MediaOverall />} />
                 <Route path="/serie-negativa" element={<SerieNegativa />} />
+                <Route path="/rinnovi" element={<RinnoviIngaggiMercato tipoImprevisto="rinnovi" />} />
+                <Route path="/ingaggi" element={<RinnoviIngaggiMercato tipoImprevisto="ingaggi" />} />
+                <Route path="/mercato" element={<RinnoviIngaggiMercato tipoImprevisto="mercato" />} />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
         </AnimatePresence>

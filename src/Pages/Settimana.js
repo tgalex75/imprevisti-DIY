@@ -54,7 +54,7 @@ const Settimana = () => {
               </>
             ) : (
               <>
-                <FetchImprevisto />
+                <FetchImprevisto tipoImprevisto="settimana"/>
               </>
             )}
           </section>

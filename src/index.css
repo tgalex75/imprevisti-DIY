@@ -9,7 +9,7 @@
 
 :root {
   --clr-prim: #ce7500;
-  --clr-sec: #2DE049;
+  --clr-sec: #169427;
   --clr-ter: #1d0e3a;
 }
 
@@ -31,17 +31,17 @@ code {
 }
 
 /* Tshirt estrazione */
-@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap"); */
 
 /* IMPREVISTO TIMBRO */
-@import url('https://fonts.googleapis.com/css2?family=Boogaloo&display=swap');
-
+/* @import url('https://fonts.googleapis.com/css2?family=Boogaloo&display=swap');
+ */
 /* Imprevisti della Community - Testo */
-@import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
-
+/* @import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
+ */
 /* Titoli H1 */
-@import url("https://fonts.googleapis.com/css2?family=Handlee&family=Paytone+One&display=swap");
-
+/* @import url("https://fonts.googleapis.com/css2?family=Handlee&family=Paytone+One&display=swap");
+ */
 h1 {
   font-family: "Paytone One", sans-serif;
   font-size: clamp(1.2rem, 2.5vw, 3rem);

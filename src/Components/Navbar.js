@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { CartContext } from "../context/regContext";
 import { MdHome, MdMenu, MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
-import pdfLink from "../assets/pdf/istruzioni.pdf"
+import pdfLink from "../assets/pdf/istruzioni.pdf";
 import { motion } from "framer-motion";
 import { isMobile } from "react-device-detect";
 
 const Navbar = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+
+  const { sezioniAttive, defaultValues } = useContext(CartContext);
+
+  const isVisibleArray = sezioniAttive?.map((number) => number.isVisible) || defaultValues
+
 
   const handleClick = () => {
     setIsOpenMenu((prevMenu) => !prevMenu);
@@ -14,28 +20,37 @@ const Navbar = () => {
 
   const dettagliMenu = [
     { id: 1, voceLi: "Home", linkTo: "/" },
-    { id: 2, voceLi: "Imprevisto Prepartita", linkTo: "/prepartita" },
-    { id: 3, voceLi: "Imprevisto Settimanale", linkTo: "/settimana" },
+    { id: 2, voceLi: "Prepartita", linkTo: "/prepartita", isVisible: isVisibleArray[0], },
+    { id: 3, voceLi: "Settimanale", linkTo: "/settimana", isVisible: isVisibleArray[1], },
     {
       id: 4,
-      voceLi: "Imprevisto Serie Negativa",
-      linkTo: "/serie-negativa",
+      voceLi: "Serie Negativa",
+      linkTo: "/serie-negativa", isVisible: isVisibleArray[2],
     },
+    { id: 5, voceLi: "Rinnovi", linkTo: "/rinnovi", isVisible: isVisibleArray[3], },
+    { id: 6, voceLi: "Ingaggi", linkTo: "/ingaggi", isVisible: isVisibleArray[4], },
+    { id: 7, voceLi: "Mercato", linkTo: "/mercato", isVisible: isVisibleArray[5], },
     { id: 8, voceLi: "Media Overall", linkTo: "/calcolo-media" },
     { id: 10, voceLi: "Editor Imprevisti", linkTo: "/editor-imprevisti" },
-    { id: 11, voceLi: "Istruzioni", linkTo: pdfLink, target: "_blank" },
+    { id: 11, voceLi: "Impostazioni App", linkTo: "/impostazioni" },
+    { id: 12, voceLi: "Istruzioni", linkTo: pdfLink, target: "_blank" },
   ];
 
   //Sostituire div con <Link> from react-router
   const linksMenu = dettagliMenu.map((voce) => {
     return (
-      <div key={voce.id}>
+      <div key={voce.id} className={`${voce.isVisible === 0 && "hidden"}`}>
         <Link to={voce.linkTo} target={voce?.target}>
           <motion.li
             layout
-            whileHover={{ scale: 1.2}}
-            transition={{ type: "spring", duration: 0.4, ease: "easeIn", stiffness: 200 }}
-            className="text-lg px-8 md:text-xl font-bold uppercase hover:text-[--clr-sec] p-4"
+            whileHover={{ scale: 1.2 }}
+            transition={{
+              type: "spring",
+              duration: 0.4,
+              ease: "easeIn",
+              stiffness: 200,
+            }}
+            className="p-4 px-8 text-lg font-bold uppercase hover:text-[--clr-sec] md:text-xl"
           >
             {voce.voceLi}
           </motion.li>
@@ -43,7 +58,6 @@ const Navbar = () => {
       </div>
     );
   });
-  
 
   return (
     <nav className="fixed z-[1000] flex h-auto w-full items-center justify-between px-2 py-1 md:px-6 md:py-3">
@@ -65,7 +79,7 @@ const Navbar = () => {
           />
         </Link>
       </div>
-      <div className="flex cursor-pointer items-center justify-center rounded-full p-1 md:p-2 hover:bg-gray-300/30">
+      <div className="flex cursor-pointer items-center justify-center rounded-full p-1 hover:bg-gray-300/30 md:p-2">
         {!isOpenMenu ? (
           <MdMenu
             size={isMobile ? 28 : 36}
@@ -85,7 +99,7 @@ const Navbar = () => {
         <ul
           style={isOpenMenu ? { right: 0 } : { right: "-100%" }}
           onClick={handleClick}
-          className="absolute top-0 z-[-1] flex h-screen w-full md:w-[30vw] flex-col items-center md:py-6 py-4 justify-start gap-10 md:justify-around bg-black/95 text-center text-gray-300 transition-[0.5s]"
+          className="absolute top-0 z-[-1] flex h-screen w-full flex-col items-center justify-start bg-black/95 py-2 text-center text-gray-300 transition-[0.5s] md:w-[30vw] md:justify-around md:gap-2 md:py-2"
         >
           {linksMenu}
         </ul>
