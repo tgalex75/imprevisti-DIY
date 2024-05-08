@@ -78,6 +78,8 @@ const RinnoviIngaggiMercato = (props) => {
     db.registroGiocatori.clear();
   };
 
+  const [isHidden, setIsHidden] = useState(true);
+
   return (
     <>
       <LayoutBase titoloH1={titoloH1} isImprev={isImprev} casuale={casuale}>
@@ -96,18 +98,18 @@ const RinnoviIngaggiMercato = (props) => {
               {titolo}
             </h3>
             <p
-              className={`mt-4 h-2/4 px-4 font-Descr text-xl [filter:drop-shadow(.05rem_.05rem_0.1rem_#000)] md:h-full md:w-2/3 ${descrizione.length > 40 ? "h-3/4 md:text-2xl" : "md:text-3xl"}`}
+              className={`mt-4 h-2/4 px-4 font-Descr text-xl [filter:drop-shadow(.05rem_.05rem_0.1rem_#000)] md:h-full md:w-1/2 ${descrizione.length > 40 ? "h-3/4 md:text-2xl" : "md:text-3xl"}`}
             >
               {descrizione}
             </p>
-            <div className="hidden text-start md:flex md:w-1/3 md:flex-col">
+            <div className={`${isHidden ? "invisible" : "hidden md:flex md:w-1/3 md:flex-col visible"} transition-opacity duration-700 text-start`}>
               <label
                 htmlFor="nome-giocatore"
                 className="mb-1 inline-block text-xs text-gray-300 md:text-sm"
               >
                 Giocatore da annotare nel registro
               </label>
-              <div className="hidden items-center justify-between gap-2 md:flex">
+              <div className="hidden items-center justify-between gap-2 md:flex mb-2">
                 <input
                   ref={inputRef}
                   type="text"
@@ -177,6 +179,8 @@ const RinnoviIngaggiMercato = (props) => {
               deleteListDB={deleteListDB}
               removeVociRegistro={removeVociRegistro}
               tipoImprevisto={tipoImprevisto}
+              isHidden={isHidden}
+              setIsHidden={setIsHidden}
             />
           </section>
         )}
