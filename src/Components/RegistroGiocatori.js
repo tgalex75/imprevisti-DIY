@@ -47,7 +47,7 @@ const RegistroGiocatori = (props) => {
           Resetta lista
         </button>
       </motion.div>
-      <MdChevronLeft size={52} color="var(--clr-prim)" className={`${isHidden ? "rotate-180 left-1 blink" : "left-[19vw] rotate-0"} hover:scale-125 duration-700 -z-1 cursor-pointer absolute top-1/2 -translate-y-1/2 transition-all`} onClick={handleToggle} />
+      <MdChevronLeft size={52} color="var(--clr-prim)" className={`hidden md:block ${isHidden ? "rotate-180 left-1 blink" : "left-[19vw] rotate-0"} hover:scale-125 duration-700 -z-1 cursor-pointer absolute top-1/2 -translate-y-1/2 transition-all`} onClick={handleToggle} />
     </>
   );
 };
