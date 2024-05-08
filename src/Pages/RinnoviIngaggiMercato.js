@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useContext, useRef } from "react";
 import Dado from "../Components/Dado";
 import { db } from "../Data/db";
 import RegistroGiocatori from "../Components/RegistroGiocatori";
@@ -55,16 +55,7 @@ const RinnoviIngaggiMercato = (props) => {
     ? tipoImprevisto
     : "Imprevisto " + tipoImprevisto.toUpperCase();
 
-  const [vociRegistro, setVociRegistro] = useState([]);
   const inputRef = useRef(null);
-
-  useEffect(() => {
-    fetchRegistryList(); // eslint-disable-next-line
-  }, [vociRegistro]);
-
-  const fetchRegistryList = () => {
-    setVociRegistro(registroGiocatori?.length > 0 ? registroGiocatori : []);
-  };
 
   const uploadListDB = async (list) => {
     try {
@@ -84,10 +75,8 @@ const RinnoviIngaggiMercato = (props) => {
   };
 
   const deleteListDB = () => {
-    db.registroGiocatori.clear()
+    db.registroGiocatori.clear();
   };
-
-  console.log(vociRegistro)
 
   return (
     <>
@@ -162,7 +151,7 @@ const RinnoviIngaggiMercato = (props) => {
                       ease: "easeIn",
                     }}
                     key={i}
-                    className="flex w-full items-center justify-start gap-4 hover:text-[--clr-ter]"
+                    className="flex w-full items-center justify-start gap-4 hover:text-[--clr-sec]"
                   >
                     <MdArrowForward />
                     <Link to={el.linkTo}>{el.linkDesc}</Link>
@@ -177,20 +166,20 @@ const RinnoviIngaggiMercato = (props) => {
                   ease: "easeIn",
                 }}
                 key="prepartita"
-                className="flex w-full items-center justify-start gap-4 hover:text-[--clr-ter]"
+                className="flex w-full items-center justify-start gap-4 hover:text-[--clr-sec]"
               >
                 <MdArrowForward />
                 <Link to="/prepartita">Prepartita</Link>
               </motion.div>
             </motion.div>
+            <RegistroGiocatori
+              registroGiocatori={registroGiocatori}
+              deleteListDB={deleteListDB}
+              removeVociRegistro={removeVociRegistro}
+              tipoImprevisto={tipoImprevisto}
+            />
           </section>
         )}
-        <RegistroGiocatori
-          vociRegistro={vociRegistro}
-          deleteListDB={deleteListDB}
-          removeVociRegistro={removeVociRegistro}
-          tipoImprevisto={tipoImprevisto}
-        />
       </LayoutBase>
 
       {Dado(fetchList)}
