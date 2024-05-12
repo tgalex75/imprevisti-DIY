@@ -12,6 +12,7 @@ export const CartProvider = ({ children }) => {
   const ingaggi = useLiveQuery(async () => db.ingaggi.toArray());
   const mercato = useLiveQuery(async () => db.mercato.toArray());
   const speciali = useLiveQuery(async () => db.speciali.toArray());
+  const registroGiocatori = useLiveQuery(async () => db.registroGiocatori.toArray());
 
   const defaultValues = [
     { id: 100, nomeSezione: "Prepartita", isVisible: 1 },
