@@ -153,7 +153,7 @@ const RinnoviIngaggiMercato = (props) => {
                       ease: "easeIn",
                     }}
                     key={i}
-                    className="flex w-full items-center justify-start gap-4 hover:text-[--clr-sec]"
+                    className="flex w-full text-left items-center justify-start gap-4 hover:text-[--clr-sec]"
                   >
                     <MdArrowForward />
                     <Link to={el.linkTo}>{el.linkDesc}</Link>
@@ -168,7 +168,7 @@ const RinnoviIngaggiMercato = (props) => {
                   ease: "easeIn",
                 }}
                 key="prepartita"
-                className="flex w-full items-center justify-start gap-4 hover:text-[--clr-sec]"
+                className="flex w-full text-left items-center justify-start gap-4 hover:text-[--clr-sec]"
               >
                 <MdArrowForward />
                 <Link to="/prepartita">Prepartita</Link>

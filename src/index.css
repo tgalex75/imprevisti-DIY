@@ -8,9 +8,21 @@
 }
 
 :root {
+  --clr-bg: #eee;
   --clr-prim: #ce7500;
   --clr-sec: #169427;
   --clr-ter: #1d0e3a;
+  --clr-txt: #222;
+  --clr-svg: #fb37fb;
+}
+
+[data-theme='dark'] {
+  --clr-bg: #1d0e3a;
+  --clr-prim: #fb37fb;
+  --clr-sec: #dd8913;
+  --clr-ter: #1d0e3a;
+  --clr-txt: #eee;
+  --clr-svg: #eee;
 }
 
 body {
@@ -20,8 +32,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--clr-ter);
-  color: #eeeeee;
   overflow: hidden;
 }
 
@@ -45,6 +55,7 @@ code {
 h1 {
   font-family: "Paytone One", sans-serif;
   font-size: clamp(1.2rem, 2.5vw, 3rem);
+  color: var(--clr-txt);
 }
 
 #login--theme > div {

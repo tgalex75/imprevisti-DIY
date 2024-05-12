@@ -4,7 +4,12 @@ import { motion } from "framer-motion";
 import FormImpostazioni from "../Components/FormImpostazioni";
 
 const ImpostazioniApp = () => {
-  const { sezioniAttive } = useContext(CartContext);
+  const { sezioniAttive, theme, setTheme } = useContext(CartContext);
+
+  const switchTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light"
+    setTheme(newTheme)
+  }
 
   return (
     <section className="flex h-full w-full select-none flex-col items-center justify-start gap-2 px-4 py-6 font-semibold md:justify-around md:p-8">
@@ -24,7 +29,7 @@ const ImpostazioniApp = () => {
         </h2>
         <div
           id="container"
-          className="grid grid-cols-2 justify-center gap-6 rounded-lg border p-4 md:w-3/4 md:grid-cols-3 md:gap-12 md:border-none md:p-12"
+          className="grid grid-cols-2 justify-center gap-6 rounded-lg border p-4 md:grid-cols-6 md:gap-4 md:border-none md:p-12"
         >
           {sezioniAttive?.map((el) => (
             <FormImpostazioni
@@ -35,6 +40,7 @@ const ImpostazioniApp = () => {
             />
           ))}
         </div>
+        <button className="bg-[--clr-prim] w-24 h-8 rounded-lg" onClick={switchTheme}>Click</button>
       </motion.main>
     </section>
   );

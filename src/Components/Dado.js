@@ -19,6 +19,7 @@ const Dado = (clickFunc) => {
         style={{
           filter: "drop-shadow(.25rem .25rem 0.15rem #222)",
         }}
+        className="fill-gray-300"
         size= {isMobile ? 72 : 112}
         onClick={clickFunc}
       />
