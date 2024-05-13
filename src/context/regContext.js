@@ -1,4 +1,4 @@
-import { useEffect, createContext, useState } from "react";
+import { useEffect, createContext } from "react";
 import { db } from "../Data/db";
 import { useLiveQuery } from "dexie-react-hooks";
 
@@ -41,9 +41,7 @@ export const CartProvider = ({ children }) => {
 
   const defaultTheme = useLiveQuery(async () => db.defaultTheme.toArray());
 
-  const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const [theme, setTheme] = useState(defaultDark ? "dark" : "light");
-  console.log(defaultDark)
+  const themeValue = defaultTheme?.map(el => el.theme)[0]
 
   return (
     <CartContext.Provider
@@ -58,9 +56,7 @@ export const CartProvider = ({ children }) => {
         sezioniAttive,
         defaultValues,
         registroGiocatori,
-        theme,
-        setTheme,
-        defaultTheme,
+        themeValue,
       }}
     >
       {children}
