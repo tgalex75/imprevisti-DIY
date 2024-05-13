@@ -9,11 +9,12 @@
 
 :root {
   --clr-bg: #eee;
-  --clr-prim: #ce7500;
-  --clr-sec: #169427;
-  --clr-ter: #1d0e3a;
+  --clr-prim: #5e60cf;
+  --clr-sec: #1d0e3a;
+  --clr-ter: #169427;
   --clr-txt: #222;
-  --clr-svg: #fb37fb;
+  --clr-svg: #222;
+  --clr-cont: #00000021;
 }
 
 [data-theme='dark'] {
@@ -23,6 +24,7 @@
   --clr-ter: #1d0e3a;
   --clr-txt: #eee;
   --clr-svg: #eee;
+  --clr-cont: #00000080;
 }
 
 body {

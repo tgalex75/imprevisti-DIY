@@ -2,13 +2,15 @@ import { useContext } from "react";
 import { CartContext } from "../context/regContext";
 import { motion } from "framer-motion";
 import FormImpostazioni from "../Components/FormImpostazioni";
+import { db } from "../Data/db";
 
 const ImpostazioniApp = () => {
   const { sezioniAttive, theme, setTheme } = useContext(CartContext);
 
-  const switchTheme = () => {
+  const switchTheme = async () => {
     const newTheme = theme === "light" ? "dark" : "light"
     setTheme(newTheme)
+    await db.defaultTheme.update(1, {theme: newTheme})
   }
 
   return (
@@ -18,7 +20,7 @@ const ImpostazioniApp = () => {
         initial={{ opacity: 0, x: "-10vw" }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.4, duration: 0.4, type: "spring" }}
-        className="flex h-full w-full select-none flex-col items-center gap-4 rounded-xl bg-black/50 p-6 text-center text-lg shadow-lg ring ring-inset ring-white/75 md:gap-12 md:px-10 md:py-6 md:text-xl"
+        className="flex h-full w-full select-none flex-col items-center gap-4 rounded-xl bg-[--clr-cont] p-6 text-center text-lg shadow-lg ring ring-inset ring-white/75 md:gap-12 md:px-10 md:py-6 md:text-xl"
       >
         <h2 className="text-base md:text-xl">
           Scegli quali sezioni vuoi abilitare ed utilizzare nella Web app:

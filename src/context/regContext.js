@@ -1,4 +1,4 @@
-import {useEffect, createContext, useState } from "react";
+import { useEffect, createContext, useState } from "react";
 import { db } from "../Data/db";
 import { useLiveQuery } from "dexie-react-hooks";
 
@@ -12,9 +12,10 @@ export const CartProvider = ({ children }) => {
   const ingaggi = useLiveQuery(async () => db.ingaggi.toArray());
   const mercato = useLiveQuery(async () => db.mercato.toArray());
   const speciali = useLiveQuery(async () => db.speciali.toArray());
-  const registroGiocatori = useLiveQuery(async () => db.registroGiocatori.toArray());
+  const registroGiocatori = useLiveQuery(async () =>
+    db.registroGiocatori.toArray(),
+  );
 
-  
   const defaultValues = [
     { id: 100, nomeSezione: "Prepartita", isVisible: 1 },
     { id: 200, nomeSezione: "Settimana", isVisible: 1 },
@@ -24,19 +25,25 @@ export const CartProvider = ({ children }) => {
     { id: 600, nomeSezione: "Mercato", isVisible: 1 },
   ];
 
+  const defaultThemeValue = [{ id: 1, theme: "dark" }];
+
   useEffect(() => {
     const fetchData = async () => {
       const result = await db.sezioniAttive.toArray();
-      result.length === 0 && db.sezioniAttive.bulkAdd(defaultValues)
+      result.length === 0 && db.sezioniAttive.bulkAdd(defaultValues);
+      const resultTheme = await db.defaultTheme.toArray();
+      resultTheme.length === 0 && db.defaultTheme.bulkAdd(defaultThemeValue);
     };
     fetchData(); // eslint-disable-next-line
   }, []);
 
   const sezioniAttive = useLiveQuery(async () => db.sezioniAttive.toArray());
 
-  const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const [theme, setTheme] = useState(defaultDark ? 'dark' : 'light');
+  const defaultTheme = useLiveQuery(async () => db.defaultTheme.toArray());
 
+  const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const [theme, setTheme] = useState(defaultDark ? "dark" : "light");
+  console.log(defaultDark)
 
   return (
     <CartContext.Provider
@@ -53,6 +60,7 @@ export const CartProvider = ({ children }) => {
         registroGiocatori,
         theme,
         setTheme,
+        defaultTheme,
       }}
     >
       {children}

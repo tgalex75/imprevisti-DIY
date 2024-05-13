@@ -94,7 +94,7 @@ const Home = () => {
             <Link to={el.link} className="flex h-full bg-transparent">
               <h2
                 style={{}}
-                className={`flex rotate-180 items-center justify-center bg-[--clr-ter] px-4 text-center text-[.4rem] font-bold uppercase text-gray-200 drop-shadow-lg transition-all [text-shadow:rgb(34,34,34)_0px_4px_4px] [writing-mode:vertical-lr] group-hover:w-1/4 group-hover:border-l-[.35rem] group-hover:border-[--clr-ter] group-hover:bg-[--clr-sec] group-hover:px-6 md:justify-start md:px-2 md:ps-8 md:text-[1.5dvw] md:group-hover:w-auto md:group-hover:border-l-[.8rem]`}
+                className={`flex rotate-180 items-center justify-center bg-[--clr-ter] px-4 text-center text-[.4rem] font-bold uppercase text-gray-200 drop-shadow-lg transition-all [text-shadow:rgb(34,34,34)_0px_4px_4px] [writing-mode:vertical-lr] group-hover:w-1/4 group-hover:border-l-[.35rem] group-hover:border-[--clr-prim] group-hover:bg-[--clr-sec] group-hover:px-6 md:justify-start md:px-2 md:ps-8 md:text-[1.5dvw] md:group-hover:w-auto md:group-hover:border-l-[1.5rem]`}
               >
                 {el.impr}
               </h2>
