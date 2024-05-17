@@ -6,6 +6,7 @@ import { initialMessage } from "../Components/InitialMessage";
 //import { motion } from "framer-motion";
 import LayoutBase from "../Components/LayoutBase";
 import { CartContext } from "../context/regContext";
+import { motion } from "framer-motion";
 
 const Settimana = () => {
   const { settimana } = useContext(CartContext);
@@ -27,7 +28,13 @@ const Settimana = () => {
     <>
       <LayoutBase titoloH1={titoloH1} isImprev={isImprev} casuale={casuale}>
         {casuale && (
-          <section className="flex h-full w-full flex-col items-center justify-around">
+          <motion.section
+            initial={{ opacity: 0, x: "-10vw" }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3, duration: 0.3, type: "spring" }}
+            key={Math.random()}
+            className="flex h-full w-full flex-col items-center justify-around"
+          >
             <h2
               className={
                 isImprev > 0
@@ -54,10 +61,10 @@ const Settimana = () => {
               </>
             ) : (
               <>
-                <FetchImprevisto tipoImprevisto="settimana"/>
+                <FetchImprevisto tipoImprevisto="settimana" />
               </>
             )}
-          </section>
+          </motion.section>
         )}
       </LayoutBase>
       {Dado(fetchList)}

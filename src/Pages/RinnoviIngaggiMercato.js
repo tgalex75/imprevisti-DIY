@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { isMobile } from "react-device-detect";
 import random from "random";
+import BonusAnnuali from "../Components/BonusAnnuali";
 
 const RinnoviIngaggiMercato = (props) => {
   const tipoImprevisto = props.tipoImprevisto;
@@ -91,7 +92,13 @@ const RinnoviIngaggiMercato = (props) => {
     <>
       <LayoutBase titoloH1={titoloH1} isImprev={isImprev} casuale={casuale}>
         {casuale && (
-          <section className="relative flex h-full w-full flex-col items-center justify-around">
+          <motion.section
+            initial={{ opacity: 0, x: "-10vw" }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3, duration: 0.3, type: "spring" }}
+            key={Math.random()}
+            className="relative flex h-full w-full flex-col items-center justify-around"
+          >
             <h2
               className={
                 isImprev > 0
@@ -109,14 +116,16 @@ const RinnoviIngaggiMercato = (props) => {
             >
               {descrizione}
             </p>
-            <div className={`${isHidden ? "invisible" : "hidden md:flex md:w-1/3 md:flex-col visible"} transition-opacity duration-700 text-start`}>
+            <div
+              className={`${isHidden ? "invisible" : "visible hidden md:flex md:w-1/3 md:flex-col"} text-start transition-opacity duration-700`}
+            >
               <label
                 htmlFor="nome-giocatore"
                 className="mb-1 inline-block text-xs text-gray-300 md:text-sm"
               >
                 Giocatore da annotare nel registro
               </label>
-              <div className="hidden items-center justify-between gap-2 md:flex mb-2">
+              <div className="mb-2 hidden items-center justify-between gap-2 md:flex">
                 <input
                   ref={inputRef}
                   type="text"
@@ -160,7 +169,7 @@ const RinnoviIngaggiMercato = (props) => {
                       ease: "easeIn",
                     }}
                     key={i}
-                    className="flex w-full items-center justify-start gap-4 hover:text-[--clr-sec]"
+                    className="flex text-left w-full items-center justify-start gap-4 hover:text-[--clr-sec]"
                   >
                     <MdArrowForward />
                     <Link to={el.linkTo}>{el.linkDesc}</Link>
@@ -175,12 +184,13 @@ const RinnoviIngaggiMercato = (props) => {
                   ease: "easeIn",
                 }}
                 key="prepartita"
-                className="flex w-full items-center justify-start gap-4 hover:text-[--clr-sec]"
+                className="flex text-left w-full items-center justify-start gap-4 hover:text-[--clr-sec]"
               >
                 <MdArrowForward />
                 <Link to="/prepartita">Prepartita</Link>
               </motion.div>
             </motion.div>
+            <BonusAnnuali />
             <RegistroGiocatori
               registroGiocatori={registroGiocatori}
               deleteListDB={deleteListDB}
@@ -189,7 +199,7 @@ const RinnoviIngaggiMercato = (props) => {
               isHidden={isHidden}
               setIsHidden={setIsHidden}
             />
-          </section>
+          </motion.section>
         )}
       </LayoutBase>
 

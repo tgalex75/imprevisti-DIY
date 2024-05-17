@@ -6,6 +6,7 @@ import LayoutBase from "../Components/LayoutBase";
 import Dado from "../Components/Dado";
 import { CartContext } from "../context/regContext";
 import random from "random";
+import { motion } from "framer-motion";
 
 const Prepartita = () => {
   const { prepartita } = useContext(CartContext);
@@ -29,7 +30,12 @@ const Prepartita = () => {
     <>
       <LayoutBase titoloH1={titoloH1} isImprev={isImprev} casuale={casuale}>
         {casuale && (
-          <section className="flex h-full w-full flex-col items-center justify-around">
+          <motion.section
+          initial={{ opacity: 0, x: "-10vw" }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3, duration: 0.3, type: "spring" }}
+            key={Math.random()}
+          className="flex h-full w-full flex-col items-center justify-around">
             <h2
               className={
                 isImprev > 0
@@ -60,7 +66,7 @@ const Prepartita = () => {
               </>
             )}
             {ultEstrazione === 1 && !isImprSpeciale && <SecondaEstrazione />}
-          </section>
+          </motion.section>
         )}
       </LayoutBase>
       {Dado(fetchList)}

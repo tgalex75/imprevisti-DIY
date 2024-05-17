@@ -7,13 +7,13 @@ const Dado = (clickFunc) => {
   return (
     <motion.div
     whileHover={{
-      rotate: 30,
+      rotate: 15,
       }}
       whileTap={{
-        rotate: -90,
+        rotate: -45,
         scale: 1.2
       }}
-      transition={{type: "spring", stiffness: 300 }}
+      transition={{type: "spring", stiffness: 150 }}
     className="absolute bottom-0 right-0 flex h-auto select-none cursor-pointer items-center justify-center rounded-full md:p-3 me-4 mb-14 md:m-4 md:hover:bg-gray-500/10">
       <GiPerspectiveDiceSixFacesRandom
         style={{
