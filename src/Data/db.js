@@ -40,4 +40,17 @@ db.version(4).stores({
     registroGiocatori: "++id, name, description, tipo",
     defaultTheme: "id, theme"
 })
+db.version(5).stores({
+    prepartita: "++id, titolo, descrizione, isImprev, ultEstrazione",
+    settimana: "++id, titolo, descrizione, isImprev",
+    serienegativa: "++id, titolo, descrizione, isImprev, ultEstrazione",
+    rinnovi: "++id, titolo, descrizione, isImprev",
+    ingaggi: "++id, titolo, descrizione, isImprev",
+    mercato: "++id, titolo, descrizione, isImprev",
+    speciali: "++id, titolo, descrizione, isImprev, eliminaDopoEstrazione",
+    sezioniAttive: "id, nomeSezione, isVisible",
+    registroGiocatori: "++id, name, description, tipo",
+    defaultTheme: "id, theme",
+    images: "++id, name, data",
+})
 

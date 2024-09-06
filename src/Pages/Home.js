@@ -14,11 +14,13 @@ import ingaggiMobile from "../assets/imgs/ingaggi_mobile.jpg";
 import mercato from "../assets/imgs/mercato.jpg";
 import WelcomeModal from "../Components/WelcomeModal";
 import { CartContext } from "../context/regContext";
+import { MdEdit } from "react-icons/md";
 
 const Home = () => {
   const { sezioniAttive, defaultValues } = useContext(CartContext);
 
-  const isVisibleArray = sezioniAttive?.map((number) => number.isVisible) || defaultValues
+  const isVisibleArray =
+    sezioniAttive?.map((number) => number.isVisible) || defaultValues;
 
   //const countIsVisible = isVisibleArray?.filter(num => num === 1).length + 2
 
@@ -82,14 +84,16 @@ const Home = () => {
   return (
     <>
       <WelcomeModal />
-      <section className={`flex h-full w-full flex-wrap bg-stone-950 font-bold text-gray-800`}>
+      <section
+        className={`flex h-full w-full flex-wrap bg-stone-950 font-bold text-gray-800`}
+      >
         {dettagliImprevisti.map((el) => (
           <div
             key={el.id}
             style={{
               zIndex: el.id,
             }}
-            className={`${el.isVisible === 0 && "hidden"} basis-1/2 md:basis-1/4 grow ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] group cursor-pointer overflow-hidden items-center justify-start transition-all duration-500 [box-shadow:-12px_0px_10px_-3px_rgba(2,2,2,0.5)] hover:text-gray-300`}
+            className={`${el.isVisible === 0 && "hidden"} ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] group grow basis-1/2 cursor-pointer items-center justify-start overflow-hidden transition-all duration-500 [box-shadow:-12px_0px_10px_-3px_rgba(2,2,2,0.5)] hover:text-gray-300 md:basis-1/4`}
           >
             <Link to={el.link} className="flex h-full bg-transparent">
               <h2
@@ -103,7 +107,16 @@ const Home = () => {
                   backgroundImage: `url(${el.img})`,
                 }}
                 className={`flex w-full items-end justify-end bg-black/20 bg-cover bg-center bg-no-repeat grayscale transition-all group-hover:w-full group-hover:scale-110 group-hover:grayscale-0 md:group-hover:w-full`}
-              ></div>
+              >
+                <div className="absolute bottom-4 right-4 flex cursor-pointer items-center justify-center rounded-full p-1 hover:bg-gray-300/30 md:p-2">
+                  <MdEdit
+                    size={32}
+                    color="white"
+                    className="cursor-pointer fill-gray-300 hover:fill-gray-200"
+                    onClick={() => console.log("prova")}
+                  />
+                </div>
+              </div>
             </Link>
           </div>
         ))}
