@@ -5,11 +5,11 @@ import FormImpostazioni from "../Components/FormImpostazioni";
 import { db } from "../Data/db";
 
 const ImpostazioniApp = () => {
-  const { sezioniAttive } = useContext(CartContext);
+  const { sezioniAttive, themeValue } = useContext(CartContext);
 
   const selectTheme = async (name) => {
     await db.defaultTheme.update(1, { theme: name });
-    console.log(name);
+    //console.log(name);
   };
   const themesButtons = [
     { id: 1, name: "light-standard", type: "light" },
@@ -19,7 +19,7 @@ const ImpostazioniApp = () => {
     { id: 5, name: "light-brown", type: "light" },
     { id: 6, name: "dark-mint", type: "dark" },
   ];
-
+  
   return (
     <section className="flex h-full w-full select-none flex-col items-center justify-start gap-2 px-4 py-6 font-semibold md:justify-around md:p-8">
       <h1>Impostazioni App</h1>
@@ -27,7 +27,7 @@ const ImpostazioniApp = () => {
         initial={{ opacity: 0, x: "-10vw" }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.4, duration: 0.4, type: "spring" }}
-        className="flex h-full w-full select-none flex-col items-center gap-4 rounded-xl bg-[--clr-cont] p-6 text-center text-lg shadow-lg ring ring-inset ring-white/75 md:gap-12 md:px-10 md:py-6 md:text-xl"
+        className="flex h-full w-full select-none flex-col items-center gap-4 rounded-xl bg-[--clr-cont] p-6 text-center text-lg shadow-lg ring ring-inset ring-[--clr-prim] md:gap-12 md:px-10 md:py-6 md:text-xl"
       >
         <h2 className="text-base md:text-lg px-2 md:px-12 leading-none">
           Scegli quali sezioni vuoi abilitare ed utilizzare nella Web app:
@@ -56,7 +56,7 @@ const ImpostazioniApp = () => {
             <button
               data-theme={el.name}
               key={el.id}
-              className="flex h-16 w-full flex-col rounded-lg border border-[#eee] hover:scale-105 transition-all duration-200 bg-[--clr-bg] p-2 uppercase md:h-20"
+              className={`flex h-16 w-full flex-col rounded-lg border border-[#eee] hover:scale-105 transition-all duration-200 bg-[--clr-bg] p-2 uppercase md:h-20 ${(themeValue === el.name) && "border-y-8 border-y-[--clr-prim] scale-105"}`}
               onClick={() => selectTheme(el.name)}
             >
               <div className="grid h-2/3 md:h-[85%] w-full grid-cols-6 gap-1">

@@ -106,7 +106,7 @@ const Home = () => {
                 style={{
                   backgroundImage: `url(${el.img})`,
                 }}
-                className={`flex w-full items-end justify-end bg-black/20 bg-cover bg-center bg-no-repeat grayscale transition-all group-hover:w-full group-hover:scale-110 group-hover:grayscale-0 md:group-hover:w-full`}
+                className={`flex relative w-full items-end justify-end bg-black/20 bg-cover bg-center bg-no-repeat grayscale transition-all group-hover:w-full md:group-hover:w-full`}
               >
                 <div className="absolute bottom-4 right-4 flex cursor-pointer items-center justify-center rounded-full p-1 hover:bg-gray-300/30 md:p-2">
                   <MdEdit

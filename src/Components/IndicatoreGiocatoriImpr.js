@@ -38,7 +38,7 @@ const IndicatoreGiocatoriImpr = (props) => {
           {arr.slice(start, end).map((el) => (
             <div
               key={el.id}
-              className="my-2 flex w-2 items-center justify-center rounded-lg border px-4 py-1 text-xs font-semibold text-gray-200"
+              className="my-2 flex w-2 items-center justify-center rounded-lg border border-[--clr-txt] px-4 py-1 text-xs font-semibold text-[--clr-txt]"
               style={
                 extractedPlayer.find((item) => item === el.nome) &&
                 extractedPlayerStyle

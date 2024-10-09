@@ -88,17 +88,17 @@ const RinnoviIngaggiMercato = (props) => {
             <h2
               className={
                 isImprev > 0
-                  ? "relative top-2 h-1/4 items-center font-H2  text-5xl font-extrabold uppercase [filter:drop-shadow(.05rem_.05rem_0.1rem_#000)] md:flex md:h-full md:text-6xl"
+                  ? "relative top-2 h-1/4 items-center font-H2  text-5xl font-extrabold uppercase  md:flex md:h-full md:text-6xl"
                   : "invisible md:h-full"
               }
             >
               IMPREVISTO!
             </h2>
-            <h3 className="h-1/4 items-center justify-center text-3xl font-extrabold uppercase [filter:drop-shadow(.05rem_.05rem_0.1rem_#000)] md:flex md:flex-1 md:text-6xl">
+            <h3 className="h-1/4 items-center justify-center text-3xl font-extrabold uppercase  md:flex md:flex-1 md:text-6xl">
               {titolo}
             </h3>
             <p
-              className={`mt-4 h-2/4 px-4 font-Descr text-xl [filter:drop-shadow(.05rem_.05rem_0.1rem_#000)] md:h-full md:w-1/2 ${descrizione.length > 40 ? "h-3/4 md:text-2xl" : "md:text-3xl"}`}
+              className={`mt-4 h-2/4 px-4 font-Descr text-xl  md:h-full md:w-1/2 ${descrizione.length > 40 ? "h-3/4 md:text-2xl" : "md:text-3xl"}`}
             >
               {descrizione}
             </p>
