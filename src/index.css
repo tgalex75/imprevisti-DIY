@@ -10,12 +10,12 @@
 :root,
 [data-theme="light-standard"] {
   --clr-bg: #eee;
-  --clr-prim: #5e60cf;
+  --clr-prim: #169427;
   --clr-sec: #1d0e3a;
-  --clr-ter: #169427;
+  --clr-ter: #5e60cf;
   --clr-txt: #222;
   --clr-svg: #222;
-  --clr-cont: #00000021;
+  --clr-cont: #0000004f;
 }
 
 [data-theme="light-teal"] {
@@ -24,18 +24,18 @@
   --clr-sec: #ac0e89;
   --clr-ter: #fbff23;
   --clr-txt: #222;
-  --clr-svg: #222;
-  --clr-cont: #00000021;
+  --clr-svg: #008080;
+  --clr-cont: #eee;
 }
 
 [data-theme="light-brown"] {
-  --clr-bg: #eee;
-  --clr-prim: #ce5d0085;
-  --clr-sec: #39720a;
-  --clr-ter: #fbff23;
+  --clr-bg: #f3f3f3;
+  --clr-prim: #ce5d009d;
+  --clr-sec: #fbff23;
+  --clr-ter: #39720a;
   --clr-txt: #222;
   --clr-svg: #222;
-  --clr-cont: #00000021;
+  --clr-cont: #f3f3f3;
 }
 
 [data-theme="dark-neon"] {
@@ -59,13 +59,13 @@
 }
 
 [data-theme="dark-mint"] {
-  --clr-bg: #222;
-  --clr-prim: #00ff00;
-  --clr-sec: #eee;
-  --clr-ter: #e78e28;
-  --clr-txt: #eee;
-  --clr-svg: #eee;
-  --clr-cont: #00000080;
+  --clr-bg: #121212;
+  --clr-prim: #8fff78;
+  --clr-sec: #b440ba;
+  --clr-ter: #ca756f;
+  --clr-txt: #f1f1f1;
+  --clr-svg: #f1f1f1;
+  --clr-cont: #282828;
 }
 
 body {

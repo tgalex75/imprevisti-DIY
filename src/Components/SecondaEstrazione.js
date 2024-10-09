@@ -41,12 +41,12 @@ const SecondaEstrazione = () => {
   };
 
   return (
-    <section className="flex h-[50dvh] w-full items-center justify-around gap-2 rounded-md border-2 border-gray-300/20 px-1 md:h-[40dvh] md:min-h-[50%] md:px-8">
+    <section className="flex h-[50dvh] w-full items-center justify-around gap-2 rounded-md border-2 border-[--clr-prim] px-1 md:h-[40dvh] md:min-h-[50%] md:px-8">
       <div className="absolute right-1/2 top-1/2 flex h-fit translate-x-1/2 scale-75 flex-col items-center justify-around gap-2 rounded-lg px-2 md:right-12 md:top-1/4 md:translate-x-0 md:scale-100 md:gap-4">
         <div className="flex w-full flex-col items-center justify-around gap-2">
           <label
             htmlFor="name-with-label"
-            className="self-start text-xs text-gray-300 md:text-sm"
+            className="self-start text-xs text-[--clr-txt] md:text-sm"
           >
             A chi toccherà oggi?
           </label>
